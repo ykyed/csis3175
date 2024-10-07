@@ -5,23 +5,14 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".DetailedInfoActivity"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/app_name"
+        android:text="this is a detailed screen."
         android:layout_gravity="center"
-        android:layout_margin="50dp"
-        android:textSize="25sp"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/btnDetailedScreen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Move to detailed screen"
-        android:layout_gravity="center" />
+        android:layout_margin="50dp"/>
 
 </LinearLayout>
