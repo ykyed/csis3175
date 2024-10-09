@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         initLayout();
+        int a = 0;
     }
 
     private void initLayout() {
