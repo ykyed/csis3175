@@ -3,6 +3,8 @@ package com.example.project.view;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
@@ -14,8 +16,18 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.bumptech.glide.Glide;
 import com.example.project.R;
+import com.example.project.model.DBHelper;
+import com.example.project.model.Shoe;
+import com.example.project.model.ShoeDAO;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+    private GridView gridView;
+    private ShoeListAdapter shoeListAdapter;
+    private DBHelper dbHelper;
+    private ShoeDAO shoeDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,28 +40,28 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        initLayout();
+        dbHelper = DBHelper.getInstance(this);
+        shoeDAO = new ShoeDAO(this);
 
+        initLayout();
     }
 
     private void initLayout() {
-        CardView cardItem = findViewById(R.id.cardItem);
-        ImageView imgItem = findViewById(R.id.imgItem);
 
-        cardItem.setOnClickListener(new View.OnClickListener() {
+        gridView = findViewById(R.id.gridView);
+
+        ArrayList<Shoe> shoeList = shoeDAO.getAllShoes();
+        shoeListAdapter = new ShoeListAdapter(this, shoeList);
+        gridView.setAdapter(shoeListAdapter);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Shoe selectedItem = shoeList.get(position);
+
                 Intent intent = new Intent(MainActivity.this, DetailedInfoActivity.class);
+                intent.putExtra("productCode", selectedItem.getProductCode());
                 startActivity(intent);
             }
         });
-
-        Glide.with(this).load("https://cdn.shopify.com/s/files/1/0577/7784/8502/products/cw2288111_nike_air_force_1_07_white_white_1_232x.jpg?v=1632233947")
-                .into(imgItem);
     }
-
-
-
-
-
 }

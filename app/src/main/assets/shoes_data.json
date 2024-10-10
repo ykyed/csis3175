@@ -1,0 +1,37 @@
+{
+    "shoes": [
+      {
+        "productCode": "CW2288-111",
+        "title": "Nike Air Force 1 '07 White / White - White",
+        "price": 150,
+        "rating": 4.9,
+        "reviewCount": 2734,
+        "color": "White",
+        "style": "Man",
+        "brand": "Nike",
+        "thumbnail": "https://cdn.shopify.com/s/files/1/0577/7784/8502/products/cw2288111_nike_air_force_1_07_white_white_1_232x.jpg?v=1632233947"
+      },
+      {
+        "productCode": "1201a256-121",
+        "title": "ASICS Gel-1130 White / Dark Neptune",
+        "price": 130,
+        "rating": 4.9,
+        "reviewCount": 221,
+        "color": "White",
+        "style": "Man",
+        "brand": "Asics",
+        "thumbnail": "https://cdn.shopify.com/s/files/1/0577/7784/8502/files/1201A256_121_P1_232x.jpg?v=1724955028"
+      },
+      {
+        "productCode": "JH9227",
+        "title": "adidas Handball Spezial JD Pink / Off White - Gum",
+        "price": 140,
+        "rating": 0,
+        "reviewCount": 0,
+        "color": "Pink",
+        "style": "Women",
+        "brand": "Adidas",
+        "thumbnail": "https://cdn.shopify.com/s/files/1/0577/7784/8502/files/JH9227_adidas_jd__handball_spezial_pink__off_white___gum_1_232x.jpg?v=1724234920"
+      }
+    ]
+  }
