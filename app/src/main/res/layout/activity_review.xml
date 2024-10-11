@@ -5,6 +5,95 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.ReviewActivity">
+    tools:context=".view.ReviewActivity"
+    android:padding="16dp">
+
+    <!-- Product Image -->
+    <ImageView
+        android:id="@+id/product_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/shoe_image"
+        android:contentDescription="Shoe image"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Product Name -->
+    <TextView
+        android:id="@+id/product_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nike Air Force 1"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/product_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Overall Rating Label -->
+    <TextView
+        android:id="@+id/rating_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Overall Rating"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/product_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Rating Bar -->
+    <RatingBar
+        android:id="@+id/rating_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:stepSize="1.0"
+        app:layout_constraintTop_toBottomOf="@id/rating_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Review Headline -->
+    <EditText
+        android:id="@+id/review_headline"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Review Headline"
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@id/rating_bar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="16dp"/>
+
+    <!-- Review Comments -->
+    <EditText
+        android:id="@+id/review_comment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Comments"
+        android:inputType="textMultiLine"
+        android:lines="4"
+        app:layout_constraintTop_toBottomOf="@id/review_headline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="16dp"/>
+
+    <!-- Submit Button -->
+    <Button
+        android:id="@+id/submit_review"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Submit Review"
+        app:layout_constraintTop_toBottomOf="@id/review_comment"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp"
+        android:layout_marginHorizontal="16dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
