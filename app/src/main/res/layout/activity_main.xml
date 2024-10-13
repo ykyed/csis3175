@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
@@ -8,14 +7,8 @@
     android:orientation="vertical"
     tools:context=".view.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:layout_gravity="center"
-        android:layout_margin="50dp"
-        android:textSize="25sp"
-        android:textStyle="bold" />
+    <include
+        layout="@layout/toolbar_layout"/>
 
     <GridView
         android:id="@+id/gridView"
@@ -25,8 +18,6 @@
         android:verticalSpacing="10dp"
         android:horizontalSpacing="10dp"
         android:gravity="center"/>
-
-
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardItem"
@@ -48,7 +39,6 @@
                 android:id="@+id/txtItemTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
-                android:text="Nike Air Force 1 '07 White / White - White"
                 android:textSize="15sp"
                 android:layout_gravity="center">
             </TextView>
