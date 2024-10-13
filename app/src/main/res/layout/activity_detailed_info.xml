@@ -8,12 +8,8 @@
     tools:context=".view.DetailedInfoActivity"
     android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="350dp"
-        android:layout_height="100dp"
-        android:layout_marginLeft="30dp"
-        android:src="@drawable/go_shoes_logo" />
+    <include
+        layout="@layout/toolbar_layout"/>
 
     <ScrollView
         android:layout_width="match_parent"
