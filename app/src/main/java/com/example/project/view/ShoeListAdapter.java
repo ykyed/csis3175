@@ -55,9 +55,7 @@ public class ShoeListAdapter extends BaseAdapter {
 
         String imageUrl = shoe.getThumbnail();
         Glide.with(context)
-                .load(imageUrl)  // 이미지 URL
-                .placeholder(R.drawable.placeholder)  // 이미지 로드 중에 표시할 기본 이미지
-                .error(R.drawable.error_image)  // 에러 발생 시 표시할 이미지
+                .load(imageUrl)
                 .into(thumbnail);
 
         return convertView;

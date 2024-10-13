@@ -9,7 +9,14 @@
         "color": "White",
         "style": "Man",
         "brand": "Nike",
-        "thumbnail": "https://cdn.shopify.com/s/files/1/0577/7784/8502/products/cw2288111_nike_air_force_1_07_white_white_1_232x.jpg?v=1632233947"
+        "thumbnail": "https://cdn.shopify.com/s/files/1/0577/7784/8502/products/cw2288111_nike_air_force_1_07_white_white_1_232x.jpg?v=1632233947",
+        "images": [
+          "https://jdsports.ca/cdn/shop/products/cw2288111_nike_air_force_1_07_white_white_1_671x.jpg?v=1632233947",
+          "https://jdsports.ca/cdn/shop/products/cw2288111_nike_air_force_1_07_white_white_2_671x.jpg?v=1661289535",
+          "https://jdsports.ca/cdn/shop/products/cw2288111_nike_air_force_1_07_white_white_3_671x.jpg?v=1661289535",
+          "https://jdsports.ca/cdn/shop/products/cw2288111_nike_air_force_1_07_white_white_5_671x.jpg?v=1661289535",
+          "https://jdsports.ca/cdn/shop/products/cw2288111_nike_air_force_1_07_white_white_4_671x.jpg?v=1661289535"
+        ] 
       },
       {
         "productCode": "1201a256-121",
@@ -20,7 +27,14 @@
         "color": "White",
         "style": "Man",
         "brand": "Asics",
-        "thumbnail": "https://cdn.shopify.com/s/files/1/0577/7784/8502/files/1201A256_121_P1_232x.jpg?v=1724955028"
+        "thumbnail": "https://cdn.shopify.com/s/files/1/0577/7784/8502/files/1201A256_121_P1_232x.jpg?v=1724955028",
+        "images": [
+          "https://jdsports.ca/cdn/shop/files/1201A256_121_P1_671x.jpg?v=1724955028",
+          "https://jdsports.ca/cdn/shop/files/1201A256_121_P2_671x.jpg?v=1724955028",
+          "https://jdsports.ca/cdn/shop/files/1201A256_121_P3_671x.jpg?v=1724955028",
+          "https://jdsports.ca/cdn/shop/files/1201A256_121_P4_671x.jpg?v=1724955028",
+          "https://jdsports.ca/cdn/shop/files/1201A256_121_P5_671x.jpg?v=1724955028"
+        ]
       },
       {
         "productCode": "JH9227",
@@ -31,7 +45,428 @@
         "color": "Pink",
         "style": "Women",
         "brand": "Adidas",
-        "thumbnail": "https://cdn.shopify.com/s/files/1/0577/7784/8502/files/JH9227_adidas_jd__handball_spezial_pink__off_white___gum_1_232x.jpg?v=1724234920"
+        "thumbnail": "https://cdn.shopify.com/s/files/1/0577/7784/8502/files/JH9227_adidas_jd__handball_spezial_pink__off_white___gum_1_232x.jpg?v=1724234920",
+        "images": [
+          "https://jdsports.ca/cdn/shop/files/JH9227_adidas_jd__handball_spezial_pink__off_white___gum_1_671x.jpg?v=1724234920",
+          "https://jdsports.ca/cdn/shop/files/JH9227_adidas_jd__handball_spezial_pink__off_white___gum_2_671x.jpg?v=1724234920",
+          "https://jdsports.ca/cdn/shop/files/JH9227_adidas_jd__handball_spezial_pink__off_white___gum_3_671x.jpg?v=1724234920",
+          "https://jdsports.ca/cdn/shop/files/JH9227_adidas_jd__handball_spezial_pink__off_white___gum_4_671x.jpg?v=1724234920",
+          "https://jdsports.ca/cdn/shop/files/JH9227_adidas_jd__handball_spezial_pink__off_white___gum_5_671x.jpg?v=1724234920"
+        ]
+      },
+      {
+        "productCode": "1019066K-ALP",
+        "title": "UGG Juniors' Tasman / Antilope",
+        "price": 100,
+        "rating": 5.0,
+        "reviewCount": 1,
+        "color": "Brown",
+        "style": "Boy",
+        "brand": "UGG",
+        "thumbnail": "https://cdn.shopify.com/s/files/1/0577/7784/8502/files/1019066K-ALP_ugg_juniors__tasman__antilope_1_232x.jpg?v=1725622584",
+        "images": [
+          "https://jdsports.ca/cdn/shop/files/1019066K-ALP_ugg_juniors__tasman__antilope_1_671x.jpg?v=1725622584",
+          "https://jdsports.ca/cdn/shop/files/1019066K-ALP_ugg_juniors__tasman__antilope_2_671x.jpg?v=1725622584",
+          "https://jdsports.ca/cdn/shop/files/1019066K-ALP_ugg_juniors__tasman__antilope_3_671x.jpg?v=1725622584",
+          "https://jdsports.ca/cdn/shop/files/1019066K-ALP_ugg_juniors__tasman__antilope_4_671x.jpg?v=1725622584",
+          "https://jdsports.ca/cdn/shop/files/1019066K-ALP_ugg_juniors__tasman__antilope_5_671x.jpg?v=1725622584"
+        ]
+      },
+      {
+        "productCode": "FV5951-001",
+        "title": "Nike Air Force 1 LE GS Black / Black - Black",
+        "price": 105,
+        "rating": 4.8,
+        "reviewCount": 2355,
+        "color": "Black",
+        "style": "Boy",
+        "brand": "Nike",
+        "thumbnail": "https://cdn.shopify.com/s/files/1/0577/7784/8502/files/FV5951_001_P1_232x.jpg?v=1705679896",
+        "images": [
+          "https://jdsports.ca/cdn/shop/files/FV5951_001_P1_671x.jpg?v=1705679896",
+          "https://jdsports.ca/cdn/shop/files/FV5951_001_P2_671x.jpg?v=1705679896",
+          "https://jdsports.ca/cdn/shop/files/FV5951_001_P3_671x.jpg?v=1705679896",
+          "https://jdsports.ca/cdn/shop/files/FV5951_001_P4_671x.jpg?v=1705679896",
+          "https://jdsports.ca/cdn/shop/files/FV5951_001_P5_671x.jpg?v=1705679896"
+        ]
+      },
+      {
+        "productCode": "61.98433",
+        "title": "On Women's Cloudmonster Exclusive All White",
+        "price": 220,
+        "rating": 0,
+        "reviewCount": 0,
+        "color": "White",
+        "style": "Women",
+        "brand": "On",
+        "thumbnail": "https://cdn.shopify.com/s/files/1/0577/7784/8502/files/61.98433_on_women_s_cloudmonster_exclusive_all_white_1_232x.jpg?v=1714709093",
+        "images": [
+          "https://jdsports.ca/cdn/shop/files/61.98433_on_women_s_cloudmonster_exclusive_all_white_1_671x.jpg?v=1714709093",
+          "https://jdsports.ca/cdn/shop/files/61.98433_on_women_s_cloudmonster_exclusive_all_white_2_671x.jpg?v=1714709093",
+          "https://jdsports.ca/cdn/shop/files/61.98433_on_women_s_cloudmonster_exclusive_all_white_3_671x.jpg?v=1714709093",
+          "https://jdsports.ca/cdn/shop/files/61.98433_on_women_s_cloudmonster_exclusive_all_white_4_671x.jpg?v=1714709093",
+          "https://jdsports.ca/cdn/shop/files/61.98433_on_women_s_cloudmonster_exclusive_all_white_5_671x.jpg?v=1714709093"
+        ]
+      },
+      {
+        "productCode": "NF0A3V1HKX7",
+        "title": "The North Face Women's Thermoball Traction Mule V TNF Black / TNF Black",
+        "price": 90,
+        "rating": 5.0,
+        "reviewCount": 1789,
+        "color": "Black",
+        "style": "Women",
+        "brand": "North Face",
+        "thumbnail": "https://cdn.shopify.com/s/files/1/0577/7784/8502/products/NF0A3V1HKX7_the_north_face_womenaeurtms_thermoball_traction_mule_v_tnf_black__tnf_black_1_232x.jpg?v=1681322950",
+        "images": [
+          "https://jdsports.ca/cdn/shop/products/NF0A3V1HKX7_the_north_face_womenaeurtms_thermoball_traction_mule_v_tnf_black__tnf_black_1_671x.jpg?v=1681322950",
+          "https://jdsports.ca/cdn/shop/products/NF0A3V1HKX7_the_north_face_womenaeurtms_thermoball_traction_mule_v_tnf_black__tnf_black_2_671x.jpg?v=1681322950",
+          "https://jdsports.ca/cdn/shop/products/NF0A3V1HKX7_the_north_face_womenaeurtms_thermoball_traction_mule_v_tnf_black__tnf_black_3_671x.jpg?v=1681322950",
+          "https://jdsports.ca/cdn/shop/products/NF0A3V1HKX7_the_north_face_womenaeurtms_thermoball_traction_mule_v_tnf_black__tnf_black_4_671x.jpg?v=1681322950",
+          "https://jdsports.ca/cdn/shop/products/NF0A3V1HKX7_the_north_face_womenaeurtms_thermoball_traction_mule_v_tnf_black__tnf_black_5_671x.jpg?v=1681322950"
+        ]
+      },
+      {
+        "productCode": "IG4388",
+        "title": "adidas Women's Gazelle Bold Red / Off White",
+        "price": 160,
+        "rating": 0,
+        "reviewCount": 0,
+        "color": "Red",
+        "style": "Women",
+        "brand": "Adidas",
+        "thumbnail": "https://cdn.shopify.com/s/files/1/0577/7784/8502/files/IG4388_adidas_women_s_gazelle_bold_red__off_white_1_232x.jpg?v=1728367652",
+        "images": [
+          "https://jdsports.ca/cdn/shop/files/IG4388_adidas_women_s_gazelle_bold_red__off_white_1_671x.jpg?v=1728367652",
+          "https://jdsports.ca/cdn/shop/files/IG4388_adidas_women_s_gazelle_bold_red__off_white_2_671x.jpg?v=1728367652",
+          "https://jdsports.ca/cdn/shop/files/IG4388_adidas_women_s_gazelle_bold_red__off_white_3_671x.jpg?v=1728367652",
+          "https://jdsports.ca/cdn/shop/files/IG4388_adidas_women_s_gazelle_bold_red__off_white_4_671x.jpg?v=1728367652",
+          "https://jdsports.ca/cdn/shop/files/IG4388_adidas_women_s_gazelle_bold_red__off_white_5_671x.jpg?v=1728367652"
+        ]
+      },
+      {
+        "productCode": "VN000D1HYL7",
+        "title": "Vans Women's Upland Leather White / Pink",
+        "price": 125,
+        "rating": 0,
+        "reviewCount": 0,
+        "color": "Pink",
+        "style": "Women",
+        "brand": "Vans",
+        "thumbnail": "https://cdn.shopify.com/s/files/1/0577/7784/8502/files/VN000D1HYL7_vans_women_s_upland_leather_white__pink_1_232x.jpg?v=1727847690",
+        "images": [
+          "https://jdsports.ca/cdn/shop/files/VN000D1HYL7_vans_women_s_upland_leather_white__pink_1_671x.jpg?v=1727847690",
+          "https://jdsports.ca/cdn/shop/files/VN000D1HYL7_vans_women_s_upland_leather_white__pink_2_671x.jpg?v=1727847690",
+          "https://jdsports.ca/cdn/shop/files/VN000D1HYL7_vans_women_s_upland_leather_white__pink_3_671x.jpg?v=1727847690",
+          "https://jdsports.ca/cdn/shop/files/VN000D1HYL7_vans_women_s_upland_leather_white__pink_4_671x.jpg?v=1727847690",
+          "https://jdsports.ca/cdn/shop/files/VN000D1HYL7_vans_women_s_upland_leather_white__pink_5_671x.jpg?v=1727847690"
+        ]
+      },
+      {
+        "productCode": "WL574EVW",
+        "title": "New Balance Women's WL574EVW / Nimbus Cloud",
+        "price": 120,
+        "rating": 5.0,
+        "reviewCount": 354,
+        "color": "Grey",
+        "style": "Women",
+        "brand": "New balance",
+        "thumbnail": "https://cdn.shopify.com/s/files/1/0577/7784/8502/files/WL574EVW_023_P1_232x.jpg?v=1704230030",
+        "images": [
+          "https://jdsports.ca/cdn/shop/files/WL574EVW_023_P1_671x.jpg?v=1704230030",
+          "https://jdsports.ca/cdn/shop/files/WL574EVW_023_P2_671x.jpg?v=1704230030",
+          "https://jdsports.ca/cdn/shop/files/WL574EVW_023_P3_671x.jpg?v=1704230030",
+          "https://jdsports.ca/cdn/shop/files/WL574EVW_023_P4_671x.jpg?v=1704230030",
+          "https://jdsports.ca/cdn/shop/files/WL574EVW_023_P5_671x.jpg?v=1704230030"
+        ]
+      }, 
+      {
+        "productCode": "207937-6TY",
+        "title": "Crocs Women's Echo Clog / Pink Clay",
+        "price": 50,
+        "rating": 4.5,
+        "reviewCount": 81,
+        "color": "Pink",
+        "style": "Women",
+        "brand": "Crocs",
+        "thumbnail": "https://cdn.shopify.com/s/files/1/0577/7784/8502/files/207937-6TY_crocs_women_s_echo_clog__pink_clay_1_232x.jpg?v=1683292039",
+        "images": [
+          "https://jdsports.ca/cdn/shop/files/207937-6TY_crocs_women_s_echo_clog__pink_clay_1_671x.jpg?v=1683292039",
+          "https://jdsports.ca/cdn/shop/files/207937-6TY_crocs_women_s_echo_clog__pink_clay_2_671x.jpg?v=1683292039",
+          "https://jdsports.ca/cdn/shop/files/207937-6TY_crocs_women_s_echo_clog__pink_clay_3_671x.jpg?v=1683292039",
+          "https://jdsports.ca/cdn/shop/files/207937-6TY_crocs_women_s_echo_clog__pink_clay_4_671x.jpg?v=1683292039",
+          "https://jdsports.ca/cdn/shop/files/207937-6TY_crocs_women_s_echo_clog__pink_clay_5_671x.jpg?v=1683292039"
+        ]
+      },
+      {
+        "productCode": "M1000JA",
+        "title": "New Balance M1000 Black / Grey",
+        "price": 195,
+        "rating": 0,
+        "reviewCount": 0,
+        "color": "Black",
+        "style": "Man",
+        "brand": "New balance",
+        "thumbnail": "https://cdn.shopify.com/s/files/1/0577/7784/8502/files/M1000JA_new_balance_jd__m1000_black__grey_1_232x.jpg?v=1726307281",
+        "images": [
+          "https://jdsports.ca/cdn/shop/files/M1000JA_new_balance_jd__m1000_black__grey_1_671x.jpg?v=1726307281",
+          "https://jdsports.ca/cdn/shop/files/M1000JA_new_balance_jd__m1000_black__grey_2_671x.jpg?v=1726307281",
+          "https://jdsports.ca/cdn/shop/files/M1000JA_new_balance_jd__m1000_black__grey_3_671x.jpg?v=1726307281",
+          "https://jdsports.ca/cdn/shop/files/M1000JA_new_balance_jd__m1000_black__grey_4_671x.jpg?v=1726307281",
+          "https://jdsports.ca/cdn/shop/files/M1000JA_new_balance_jd__m1000_black__grey_5_671x.jpg?v=1726307281"
+        ]
+      },
+      {
+        "productCode": "TB010061713",
+        "title": "Timberland Premium 6-Inch Waterproof Boot / Wheat Nubuck",
+        "price": 200,
+        "rating": 4.0,
+        "reviewCount": 523,
+        "color": "Wheat Nubuck",
+        "style": "Man",
+        "brand": "Timberland",
+        "thumbnail": "https://cdn.shopify.com/s/files/1/0577/7784/8502/products/tb010061713_timberland_premium_6_in_waterproof_boot_wheat_nubuck_1_232x.jpg?v=1633177781",
+        "images": [
+          "https://jdsports.ca/cdn/shop/products/tb010061713_timberland_premium_6_in_waterproof_boot_wheat_nubuck_1_671x.jpg?v=1633177781",
+          "https://jdsports.ca/cdn/shop/products/tb010061713_timberland_premium_6_in_waterproof_boot_wheat_nubuck_2_671x.jpg?v=1633177781",
+          "https://jdsports.ca/cdn/shop/products/tb010061713_timberland_premium_6_in_waterproof_boot_wheat_nubuck_3_671x.jpg?v=1633177781",
+          "https://jdsports.ca/cdn/shop/products/tb010061713_timberland_premium_6_in_waterproof_boot_wheat_nubuck_4_671x.jpg?v=1633177781",
+          "https://jdsports.ca/cdn/shop/products/tb010061713_timberland_premium_6_in_waterproof_boot_wheat_nubuck_5_671x.jpg?v=1633177781"
+        ]
+      },
+      {
+        "productCode": "1201A256-118",
+        "title": "ASICS Gel-1130 White / Cloud Grey",
+        "price": 130,
+        "rating": 5.0,
+        "reviewCount": 222,
+        "color": "Grey",
+        "style": "Man",
+        "brand": "Asics",
+        "thumbnail": "https://cdn.shopify.com/s/files/1/0577/7784/8502/files/1201A256-118_asics_gel_1130_white__cloud_grey_1_232x.jpg?v=1707806747",
+        "images": [
+          "//jdsports.ca/cdn/shop/files/1201A256-118_asics_gel_1130_white__cloud_grey_1_671x.jpg?v=1707806747",
+          "//jdsports.ca/cdn/shop/files/1201A256-118_asics_gel_1130_white__cloud_grey_2_671x.jpg?v=1707806747",
+          "//jdsports.ca/cdn/shop/files/1201A256-118_asics_gel_1130_white__cloud_grey_3_671x.jpg?v=1707806747",
+          "//jdsports.ca/cdn/shop/files/1201A256-118_asics_gel_1130_white__cloud_grey_4_671x.jpg?v=1707806747",
+          "//jdsports.ca/cdn/shop/files/1201A256-118_asics_gel_1130_white__cloud_grey_5_671x.jpg?v=1707806747"        ]
+      },
+      {
+        "productCode": "HQ6316",
+        "title": "adidas Originals Yeezy Boost 350 V2 / Bone",
+        "price": 310,
+        "rating": 5.0,
+        "reviewCount": 740,
+        "color": "White",
+        "style": "Man",
+        "brand": "Adidas",
+        "thumbnail": "https://cdn.shopify.com/s/files/1/0577/7784/8502/files/Layer01_232x.jpg?v=1722968685",
+        "images": [
+          "https://jdsports.ca/cdn/shop/files/Layer01_671x.jpg?v=1722968685",
+          "https://jdsports.ca/cdn/shop/files/Layer02_671x.jpg?v=1722968685",
+          "https://jdsports.ca/cdn/shop/files/Layer03_671x.jpg?v=1722968685"
+        ]
+      },
+      {
+        "productCode": "FQ8714-004",
+        "title": "Nike Air Force 1 '07 LV8 Black / Summit White - Gum",
+        "price": 165,
+        "rating": 0,
+        "reviewCount": 0,
+        "color": "Black",
+        "style": "Man",
+        "brand": "Nike",
+        "thumbnail": "https://cdn.shopify.com/s/files/1/0577/7784/8502/files/AURORA_FQ8714-004_PHSLH000-2000_232x.jpg?v=1724359258",
+        "images": [
+          "https://jdsports.ca/cdn/shop/files/AURORA_FQ8714-004_PHSLH000-2000_671x.jpg?v=1724359258",
+          "https://jdsports.ca/cdn/shop/files/AURORA_FQ8714-004_PHCFH001-2000_671x.jpg?v=1724359258",
+          "https://jdsports.ca/cdn/shop/files/AURORA_FQ8714-004_PHSYD001-2000_671x.jpg?v=1724359258",
+          "https://jdsports.ca/cdn/shop/files/AURORA_FQ8714-004_PHCBH000-2000_671x.jpg?v=1724359258",
+          "https://jdsports.ca/cdn/shop/files/AURORA_FQ8714-004_PHCTH001-2000_671x.jpg?v=1724359258"
+        ]
+      },
+      {
+        "productCode": "FV5633-500",
+        "title": "Nike Ja 2 GS Bold Berry / Baltic Blue - Light Lemon Twist",
+        "price": 115,
+        "rating": 0,
+        "reviewCount": 0,
+        "color": "Berry",
+        "style": "Boy",
+        "brand": "Nike",
+        "thumbnail": "https://cdn.shopify.com/s/files/1/0577/7784/8502/files/FV5633-500_nike_ja_2_gs_bold_berry__baltic_blue___light_lemon_twist_4_232x.jpg?v=1727155726",
+        "images": [
+          "https://jdsports.ca/cdn/shop/files/FV5633-500_nike_ja_2_gs_bold_berry__baltic_blue___light_lemon_twist_1_671x.jpg?v=1727155726",
+          "https://jdsports.ca/cdn/shop/files/FV5633-500_nike_ja_2_gs_bold_berry__baltic_blue___light_lemon_twist_2_671x.jpg?v=1727155726",
+          "https://jdsports.ca/cdn/shop/files/FV5633-500_nike_ja_2_gs_bold_berry__baltic_blue___light_lemon_twist_3_671x.jpg?v=1727155726",
+          "https://jdsports.ca/cdn/shop/files/FV5633-500_nike_ja_2_gs_bold_berry__baltic_blue___light_lemon_twist_4_671x.jpg?v=1727155726",
+          "https://jdsports.ca/cdn/shop/files/FV5633-500_nike_ja_2_gs_bold_berry__baltic_blue___light_lemon_twist_5_671x.jpg?v=1727155726"
+        ]
+      },
+      {
+        "productCode": "FZ7302-500",
+        "title": "Nike Sabrina KC 2 GS Dark Raisin / Metallic Gold - Obsidian",
+        "price": 120,
+        "rating": 0,
+        "reviewCount": 0,
+        "color": "Gold",
+        "style": "Boy",
+        "brand": "Nike",
+        "thumbnail": "https://cdn.shopify.com/s/files/1/0577/7784/8502/files/FZ7302-500_nike_sabrina_kc_2_gs_dark_raisin__metallic_gold___obsidian_1_232x.jpg?v=1728367977",
+        "images": [
+          "https://jdsports.ca/cdn/shop/files/FZ7302-500_nike_sabrina_kc_2_gs_dark_raisin__metallic_gold___obsidian_1_671x.jpg?v=1728367977",
+          "https://jdsports.ca/cdn/shop/files/FZ7302-500_nike_sabrina_kc_2_gs_dark_raisin__metallic_gold___obsidian_2_671x.jpg?v=1728367977",
+          "https://jdsports.ca/cdn/shop/files/FZ7302-500_nike_sabrina_kc_2_gs_dark_raisin__metallic_gold___obsidian_3_671x.jpg?v=1728367977",
+          "https://jdsports.ca/cdn/shop/files/FZ7302-500_nike_sabrina_kc_2_gs_dark_raisin__metallic_gold___obsidian_4_671x.jpg?v=1728367977",
+          "https://jdsports.ca/cdn/shop/files/FZ7302-500_nike_sabrina_kc_2_gs_dark_raisin__metallic_gold___obsidian_5_671x.jpg?v=1728367977"
+        ]
+      },
+      {
+        "productCode": "BB2502",
+        "title": "adidas Originals Juniors' Gazelle Core Black / Cloud White - Gold Metallic",
+        "price": 100,
+        "rating": 5.0,
+        "reviewCount": 12276,
+        "color": "Black",
+        "style": "Boy",
+        "brand": "Adidas",
+        "thumbnail": "https://cdn.shopify.com/s/files/1/0577/7784/8502/files/FY9673_adidas_terrex_ax4_core_black__carbon___grey_four_1_2_232x.jpg?v=1687284489",
+        "images": [
+          "https://jdsports.ca/cdn/shop/files/FY9673_adidas_terrex_ax4_core_black__carbon___grey_four_1_2_671x.jpg?v=1687284489",
+          "https://jdsports.ca/cdn/shop/files/BB2502_gazelle_j_2_671x.jpg?v=1687284489",
+          "https://jdsports.ca/cdn/shop/files/BB2502_gazelle_j_3_671x.jpg?v=1687284489",
+          "https://jdsports.ca/cdn/shop/files/BB2502_gazelle_j_4_671x.jpg?v=1687284489",
+          "https://jdsports.ca/cdn/shop/files/BB2502_gazelle_j_5_671x.jpg?v=1687284489"
+        ]
+      },
+      {
+        "productCode": "GS327FE",
+        "title": "New Balance Juniors' GS327FE Tan / Black",
+        "price": 90,
+        "rating": 4.5,
+        "reviewCount": 95,
+        "color": "Grey",
+        "style": "Boy",
+        "brand": "New balance",
+        "thumbnail": "https://cdn.shopify.com/s/files/1/0577/7784/8502/files/GS327FE_030_P1_232x.jpg?v=1714746382",
+        "images": [
+          "https://jdsports.ca/cdn/shop/files/GS327FE_030_P1_671x.jpg?v=1714746382",
+          "https://jdsports.ca/cdn/shop/files/GS327FE_030_P2_671x.jpg?v=1714746382",
+          "https://jdsports.ca/cdn/shop/files/GS327FE_030_P3_671x.jpg?v=1714746382",
+          "https://jdsports.ca/cdn/shop/files/GS327FE_030_P4_671x.jpg?v=1714746382",
+          "https://jdsports.ca/cdn/shop/files/GS327FE_030_P5_671x.jpg?v=1714746382"
+        ]
+      },
+      {
+        "productCode": "IH2873",
+        "title": "adidas Juniors' Samba OG White / Purple Burgundy - Gum",
+        "price": 100,
+        "rating": 0,
+        "reviewCount": 0,
+        "color": "Purple",
+        "style": "Girl",
+        "brand": "Adidas",
+        "thumbnail": "https://cdn.shopify.com/s/files/1/0577/7784/8502/files/IH2873_adidas_junior_s_samba_og_white__purple_burgundy___gum_1_232x.jpg?v=1725520591",
+        "images": [
+          "https://jdsports.ca/cdn/shop/files/IH2873_adidas_junior_s_samba_og_white__purple_burgundy___gum_1_671x.jpg?v=1725520591",
+          "https://jdsports.ca/cdn/shop/files/IH2873_adidas_junior_s_samba_og_white__purple_burgundy___gum_2_671x.jpg?v=1725520591",
+          "https://jdsports.ca/cdn/shop/files/IH2873_adidas_junior_s_samba_og_white__purple_burgundy___gum_3_671x.jpg?v=1725520591",
+          "https://jdsports.ca/cdn/shop/files/IH2873_adidas_junior_s_samba_og_white__purple_burgundy___gum_4_671x.jpg?v=1725520591",
+          "https://jdsports.ca/cdn/shop/files/IH2873_adidas_junior_s_samba_og_white__purple_burgundy___gum_5_671x.jpg?v=1725520591"
+
+        ]
+      },
+      {
+        "productCode": "39727306",
+        "title": "Puma Childrenï¿½s Palermo Purple / Pink",
+        "price": 35,
+        "rating": 0,
+        "reviewCount": 0,
+        "color": "Purple",
+        "style": "Girl",
+        "brand": "Puma",
+        "thumbnail": "https://cdn.shopify.com/s/files/1/0577/7784/8502/files/39727306_500_P1_232x.jpg?v=1715703061",
+        "images": [
+          "https://jdsports.ca/cdn/shop/files/39727306_500_P1_671x.jpg?v=1715703061",
+          "https://jdsports.ca/cdn/shop/files/39727306_500_P2_671x.jpg?v=1715703061",
+          "https://jdsports.ca/cdn/shop/files/39727306_500_P3_671x.jpg?v=1715703061",
+          "https://jdsports.ca/cdn/shop/files/39727306_500_P4_671x.jpg?v=1715703061",
+          "https://jdsports.ca/cdn/shop/files/39727306_500_P5_671x.jpg?v=1715703061"
+        ]
+      },
+      {
+        "productCode": "IG9153",
+        "title": "adidas Juniors' Gazelle Pink / Blue",
+        "price": 90,
+        "rating": 0,
+        "reviewCount": 0,
+        "color": "Pink",
+        "style": "Girl",
+        "brand": "Adidas",
+        "thumbnail": "https://cdn.shopify.com/s/files/1/0577/7784/8502/files/IG9153_680_P1_232x.jpg?v=1723065066",
+        "images": [
+          "https://jdsports.ca/cdn/shop/files/IG9153_680_P1_671x.jpg?v=1723065066",
+          "https://jdsports.ca/cdn/shop/files/IG9153_680_P2_671x.jpg?v=1723065066",
+          "https://jdsports.ca/cdn/shop/files/IG9153_680_P3_671x.jpg?v=1723065066",
+          "https://jdsports.ca/cdn/shop/files/IG9153_680_P4_671x.jpg?v=1723065066",
+          "https://jdsports.ca/cdn/shop/files/IG9153_680_P5_671x.jpg?v=1723065066"
+        ]
+      },
+      {
+        "productCode": "FN0237-102",
+        "title": "Nike Air Force 1 Low EasyOn PS White / Laser Fuschia",
+        "price": 80,
+        "rating": 5.0,
+        "reviewCount": 9,
+        "color": "White",
+        "style": "Girl",
+        "brand": "Nike",
+        "thumbnail": "https://cdn.shopify.com/s/files/1/0577/7784/8502/files/AURORA_FN0237-102_PHSLH000-2000_232x.jpg?v=1724692405",
+        "images": [
+          "https://jdsports.ca/cdn/shop/files/AURORA_FN0237-102_PHSLH000-2000_671x.jpg?v=1724692405",
+          "https://jdsports.ca/cdn/shop/files/AURORA_FN0237-102_PHCFH001-2000_671x.jpg?v=1724692405",
+          "https://jdsports.ca/cdn/shop/files/AURORA_FN0237-102_PHSYD001-2000_671x.jpg?v=1724692405",
+          "https://jdsports.ca/cdn/shop/files/AURORA_FN0237-102_PHCBH000-2000_671x.jpg?v=1724692405",
+          "https://jdsports.ca/cdn/shop/files/AURORA_FN0237-102_PHCTH001-2000_671x.jpg?v=1724692405"
+        ]
+      },
+      {
+        "productCode": "GSB550CD",
+        "title": "New Balance Juniors' GSB550CD White / Pink Haze",
+        "price": 110,
+        "rating": 5.0,
+        "reviewCount": 141,
+        "color": "Pink",
+        "style": "Girl",
+        "brand": "New balance",
+        "thumbnail": "https://cdn.shopify.com/s/files/1/0577/7784/8502/products/GSB550CD_550_1_232x.jpg?v=1681453714",
+        "images": [
+          "https://jdsports.ca/cdn/shop/products/GSB550CD_550_1_671x.jpg?v=1681453714",
+          "https://jdsports.ca/cdn/shop/products/GSB550CD_550_2_671x.jpg?v=1681453714",
+          "https://jdsports.ca/cdn/shop/products/GSB550CD_550_3_671x.jpg?v=1681453714",
+          "https://jdsports.ca/cdn/shop/products/GSB550CD_550_4_671x.jpg?v=1681453714",
+          "https://jdsports.ca/cdn/shop/products/GSB550CD_550_5_671x.jpg?v=1681453714"
+
+
+        ]
+      },
+      {
+        "productCode": "FB9109-110",
+        "title": "Nike Dunk Low White / Viotech - White",
+        "price": 105,
+        "rating": 0,
+        "reviewCount": 0,
+        "color": "Purple",
+        "style": "Girl",
+        "brand": "Nike",
+        "thumbnail": "https://cdn.shopify.com/s/files/1/0577/7784/8502/files/FB9109-110_nike_dunk_low_white__viotech___white_1_232x.jpg?v=1723720864",
+        "images": [
+          "https://jdsports.ca/cdn/shop/files/FB9109-110_nike_dunk_low_white__viotech___white_1_671x.jpg?v=1723720864",
+          "https://jdsports.ca/cdn/shop/files/FB9109-110_nike_dunk_low_white__viotech___white_2_671x.jpg?v=1723720864",
+          "https://jdsports.ca/cdn/shop/files/FB9109-110_nike_dunk_low_white__viotech___white_3_671x.jpg?v=1723720864",
+          "https://jdsports.ca/cdn/shop/files/FB9109-110_nike_dunk_low_white__viotech___white_4_671x.jpg?v=1723720864" ,
+          "https://jdsports.ca/cdn/shop/files/FB9109-110_nike_dunk_low_white__viotech___white_5_671x.jpg?v=1723720864"
+        ]
       }
     ]
   }
