@@ -17,16 +17,15 @@
         android:textSize="25sp"
         android:textStyle="bold" />
 
+
     <GridView
         android:id="@+id/gridView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:numColumns="2"
-        android:verticalSpacing="10dp"
+        android:gravity="center"
         android:horizontalSpacing="10dp"
-        android:gravity="center"/>
-
-
+        android:numColumns="2"
+        android:verticalSpacing="10dp" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardItem"
