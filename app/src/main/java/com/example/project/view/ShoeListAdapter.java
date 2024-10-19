@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.project.R;
@@ -48,10 +49,22 @@ public class ShoeListAdapter extends BaseAdapter {
 
         ImageView thumbnail = convertView.findViewById(R.id.imgThumbnail);
         TextView txtTitle = convertView.findViewById(R.id.txtTitle);
+        TextView txtPrice = convertView.findViewById(R.id.txtPrice);
+        RatingBar ratingBar = convertView.findViewById(R.id.ratingBar);
 
         Shoe shoe = shoeList.get(position);
 
         txtTitle.setText(shoe.getTitle());
+        String price = "$" + shoe.getPrice();
+        txtPrice.setText(price);
+
+        float rating = (float) shoe.getRating();
+        if (rating == 0) {
+            ratingBar.setVisibility(View.GONE);
+        }
+        else {
+            ratingBar.setRating((float) shoe.getRating());
+        }
 
         String imageUrl = shoe.getThumbnail();
         Glide.with(context)
