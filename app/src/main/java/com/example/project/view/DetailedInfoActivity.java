@@ -25,17 +25,17 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.bumptech.glide.Glide;
 import com.example.project.R;
+import com.example.project.model.Shoe;
 
 public class DetailedInfoActivity extends AppCompatActivity {
 
-    private TextView txtProductName;
+    private TextView txtProductName, txtProductPrice, txtStarRate;
     private ImageView imageView2;
     private Button btnCart = null;
     private GridLayout sizeButtonGrid;
     private String[] sizes = {"US 6", "US 6.5", "US 7", "US 7.5", "US 8", "US 8.5", "US 9"
             , "US 9.5", "US 10", "US 10.5", "US 11", "US 11.5", "US 12", "US 12.5", "US 13"};
     private Button selectedButton = null;
-    private Color sizeBtnBgColor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,16 +49,19 @@ public class DetailedInfoActivity extends AppCompatActivity {
         });
         initActionbarLayout();
 
+        txtStarRate = findViewById(R.id.txtStarRate);
         txtProductName = findViewById(R.id.txtProductName);
+        txtProductPrice = findViewById(R.id.txtProductPrice);
         btnCart = findViewById(R.id.btnCart);
         sizeButtonGrid = findViewById(R.id.sizeButtonGrid);
         imageView2 = findViewById(R.id.imageView2);
 
         btnCart.setEnabled(false);
         createSizeButtons(sizes);
-        txtProductName.setText("" + this.getIntent().getExtras().getString("productCode"));
-        //System.out.println(this.getIntent().getExtras().getBundle("productCode"));
-        //intent.putExtra("productCode", selectedItem.getProductCode());
+
+        txtStarRate.setText("" + this.getIntent().getExtras().getString("rating"));
+        txtProductName.setText("" + this.getIntent().getExtras().getString("title"));
+        txtProductPrice.setText("$ " + this.getIntent().getExtras().getString("price"));
 
         String imageUrl = this.getIntent().getExtras().getString("thumbnail");
         Glide.with(this)
@@ -70,7 +73,6 @@ public class DetailedInfoActivity extends AppCompatActivity {
         int totalButtons = sizes.length;
         for (int i = 0; i < totalButtons; i++) {
             Button sizeButton = createButton(sizes[i]);
-            //sizeBtnBgColor = sizeButton.getBackgroundTintList();
             sizeButtonGrid.addView(sizeButton);
         }
     }
@@ -86,12 +88,9 @@ public class DetailedInfoActivity extends AppCompatActivity {
         params.height = 100;
         sizeButton.setLayoutParams(params);
 
-//        sizeButton.setPadding(3, 5, 3, 5);
         sizeButton.setPadding(10, 5, 10, 5);
         sizeButton.setTextSize(13);
         sizeButton.setBackgroundResource(android.R.drawable.btn_default);
-        //sizeButton.setBackgroundColor(Color.WHITE);
-        //sizeButton.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorPrimary));
         orgSizeBtnColorStateList = sizeButton.getBackgroundTintList();
 
         sizeButton.setOnClickListener(new View.OnClickListener() {
@@ -146,6 +145,7 @@ public class DetailedInfoActivity extends AppCompatActivity {
 
         ImageButton imgLogin = findViewById(R.id.imgLogin);
         ImageButton imgCart = findViewById(R.id.imgCart);
+        Button btnReview = findViewById(R.id.btnReview);
 
         imgLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,6 +160,15 @@ public class DetailedInfoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DetailedInfoActivity.this, CartActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            }
+        });
+
+        btnReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DetailedInfoActivity.this, ReviewActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
