@@ -59,9 +59,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Shoe selectedItem = shoeList.get(position);
-
                 Intent intent = new Intent(MainActivity.this, DetailedInfoActivity.class);
                 intent.putExtra("productCode", selectedItem.getProductCode());
+                intent.putExtra("thumbnail", selectedItem.getThumbnail());
+
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }

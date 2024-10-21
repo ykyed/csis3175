@@ -66,150 +66,16 @@
                 android:layout_height="match_parent"
                 android:padding="30dp">
 
-                <LinearLayout
+                <GridLayout
+                    android:id="@+id/sizeButtonGrid"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-                        <Button
-                            android:id="@+id/btnSize6"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="6"
-                            android:textSize="11sp" />
-
-                        <Button
-                            android:id="@+id/btnSize6.5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="6.5"
-                            android:textSize="11sp" />
-
-                        <Button
-                            android:id="@+id/btnSize7"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="7"
-                            android:textSize="11sp" />
-
-                        <Button
-                            android:id="@+id/btnSize7.5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="7.5"
-                            android:textSize="11sp" />
-
-                        <Button
-                            android:id="@+id/btnSize8"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="8"
-                            android:textSize="11sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-                        <Button
-                            android:id="@+id/btnSize8.5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="8.5"
-                            android:textSize="11sp" />
-
-                        <Button
-                            android:id="@+id/btnSize9"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="9"
-                            android:textSize="11sp" />
-
-                        <Button
-                            android:id="@+id/btnSize9.5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="9.5"
-                            android:textSize="11sp" />
-
-                        <Button
-                            android:id="@+id/btnSize10"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="10"
-                            android:textSize="11sp" />
-
-                        <Button
-                            android:id="@+id/btnSize10.5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="10.5"
-                            android:textSize="11sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-                        <Button
-                            android:id="@+id/btnSize11"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="11"
-                            android:textSize="11sp" />
-
-                        <Button
-                            android:id="@+id/btnSize11.5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="11.5"
-                            android:textSize="11sp" />
-
-                        <Button
-                            android:id="@+id/btnSize12"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="12"
-                            android:textSize="11sp" />
-
-                        <Button
-                            android:id="@+id/btnSize12.5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="12.5"
-                            android:textSize="11sp" />
-
-                        <Button
-                            android:id="@+id/btnSize13"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="13"
-                            android:textSize="11sp" />
-                    </LinearLayout>
-                </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:columnCount="5"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:rowCount="3" />
 
             </FrameLayout>
 
@@ -218,7 +84,10 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
-                android:text="Add to cart" />
+                android:backgroundTint="#C7C6C6"
+                android:enabled="false"
+                android:text="Add to cart"
+                android:textColorLink="@color/white" />
 
             <View
                 android:id="@+id/divider"
@@ -263,6 +132,7 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
+                android:backgroundTint="@color/black"
                 android:text="Write a review" />
 
         </LinearLayout>
