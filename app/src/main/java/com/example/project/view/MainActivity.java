@@ -61,7 +61,10 @@ public class MainActivity extends AppCompatActivity {
                 Shoe selectedItem = shoeList.get(position);
                 Intent intent = new Intent(MainActivity.this, DetailedInfoActivity.class);
                 intent.putExtra("productCode", selectedItem.getProductCode());
+                intent.putExtra("title", selectedItem.getTitle());
                 intent.putExtra("thumbnail", selectedItem.getThumbnail());
+                intent.putExtra("price", String.valueOf(selectedItem.getPrice()));
+                intent.putExtra("rating", String.valueOf(selectedItem.getRating()));
 
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);

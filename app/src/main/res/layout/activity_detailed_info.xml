@@ -35,18 +35,25 @@
                     android:stepSize="0.5" />
 
                 <TextView
-                    android:id="@+id/txtAvgStarRate"
+                    android:id="@+id/txtStarRate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="85dp"
-                    android:text="TextView" />
+                    android:text="rating" />
             </FrameLayout>
 
             <TextView
                 android:id="@+id/txtProductName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:text="product name"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/txtProductPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="product price"
                 android:textSize="20sp" />
 
             <FrameLayout
