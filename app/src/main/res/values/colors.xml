@@ -5,4 +5,6 @@
 
     <color name="colorPrimary">#50FFFFFF</color>
     <color name="colorAccent">#FFFF00</color>
+    <color name="ratingbar">#d7bb1d</color>
+    <color name="transparent">#00ffffff</color>
 </resources>
