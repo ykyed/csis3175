@@ -1,9 +1,12 @@
 package com.example.project.view;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -12,6 +15,7 @@ import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
@@ -27,6 +31,13 @@ import com.bumptech.glide.Glide;
 import com.example.project.R;
 import com.example.project.model.Shoe;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 public class DetailedInfoActivity extends AppCompatActivity {
 
     private TextView txtProductName, txtProductPrice, txtStarRate;
@@ -36,6 +47,10 @@ public class DetailedInfoActivity extends AppCompatActivity {
     private String[] sizes = {"US 6", "US 6.5", "US 7", "US 7.5", "US 8", "US 8.5", "US 9"
             , "US 9.5", "US 10", "US 10.5", "US 11", "US 11.5", "US 12", "US 12.5", "US 13"};
     private Button selectedButton = null;
+
+    //review part
+    private LinearLayout reviewListContainer;
+    private TextView reviewMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +74,9 @@ public class DetailedInfoActivity extends AppCompatActivity {
         btnCart.setEnabled(false);
         createSizeButtons(sizes);
 
+        reviewListContainer = findViewById(R.id.reviewListContainer);
+        reviewMessage = findViewById(R.id.reviewMessage);
+
         txtStarRate.setText("" + this.getIntent().getExtras().getString("rating"));
         txtProductName.setText("" + this.getIntent().getExtras().getString("title"));
         txtProductPrice.setText("$ " + this.getIntent().getExtras().getString("price"));
@@ -67,8 +85,114 @@ public class DetailedInfoActivity extends AppCompatActivity {
         Glide.with(this)
                 .load(imageUrl)
                 .into(imageView2);
+        loadShoeDataAndReviews();;
     }
 
+    // review part
+    private void loadShoeDataAndReviews() {
+        String shoeDataJson = loadJSONFromAsset("shoes_data.json");
+        String reviewDataJson = loadJSONFromAsset("review_data.json");
+
+        if (shoeDataJson != null && reviewDataJson != null) {
+            try {
+                JSONObject shoeDataObject = new JSONObject(shoeDataJson);
+                JSONArray shoesArray = shoeDataObject.getJSONArray("shoes");
+
+                // Assuming you have a field "productCode" in your shoe data
+                String productCode = this.getIntent().getExtras().getString("productCode"); // Get the productCode from the intent
+                boolean hasReviews = false;
+
+                for (int i = 0; i < shoesArray.length(); i++) {
+                    JSONObject shoeObject = shoesArray.getJSONObject(i);
+                    String currentProductCode = shoeObject.getString("productCode");
+
+                    // Compare product codes
+                    if (currentProductCode.equals(productCode)) {
+                        hasReviews = true; // Found matching product code
+                        displayReviews(reviewDataJson, productCode); // Load reviews for this product code
+                        break; // Exit loop if we found the product
+                    }
+                }
+
+                // Show or hide the review message based on whether there are reviews
+                if (!hasReviews) {
+                    reviewMessage.setVisibility(View.VISIBLE); // Show message if no matching product
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private String loadJSONFromAsset(String fileName) {
+        StringBuilder jsonString = new StringBuilder();
+        AssetManager assetManager = getAssets(); // Get the asset manager
+
+        try {
+            InputStream inputStream = assetManager.open(fileName); // Open the file
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                jsonString.append(line); // Read each line and append it to the StringBuilder
+            }
+            reader.close(); // Close the reader
+        } catch (IOException e) {
+            e.printStackTrace(); // Print the stack trace in case of an exception
+        }
+
+        return jsonString.toString(); // Return the JSON string
+    }
+
+    private void displayReviews(String reviewJson, String productCode) {
+        try {
+            JSONObject reviewObject = new JSONObject(reviewJson);
+            JSONArray reviewsArray = reviewObject.getJSONArray("review");
+
+            boolean foundReviews = false; // Flag to check if any reviews were found
+
+            for (int i = 0; i < reviewsArray.length(); i++) {
+                JSONObject review = reviewsArray.getJSONObject(i);
+                String currentProductCode = review.getString("productCode");
+
+                // Check if the product codes match
+                if (currentProductCode.equals(productCode)) {
+                    foundReviews = true; // Set flag to true if we find a review
+                    String title = review.getString("title");
+                    String comment = review.getString("comment");
+                    double rating = review.getDouble("rating");
+                    addReviewToView(title, comment, rating); // Add review to view
+                }
+            }
+
+            // If no reviews were found, show the message
+            if (!foundReviews) {
+                reviewMessage.setVisibility(View.VISIBLE);
+            } else {
+                reviewMessage.setVisibility(View.GONE); // Hide message if reviews were found
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void addReviewToView(String title, String comment, double rating) {
+        TextView reviewView = new TextView(this);
+        reviewView.setText("Title: " + title + "\nRating: " + rating + "\nComment: " + comment);
+        reviewView.setLayoutParams(new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT));
+        reviewView.setPadding(20, 10, 20, 10);
+
+//        View horizontalLine = new View(this);
+//        horizontalLine.setLayoutParams(new LinearLayout.LayoutParams(
+//                LinearLayout.LayoutParams.MATCH_PARENT,
+//                2)); // Height of the line (2dp)
+//        horizontalLine.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary));
+
+        reviewListContainer.addView(reviewView);
+    }
+
+    // button
     private void createSizeButtons(String[] sizes) {
         int totalButtons = sizes.length;
         for (int i = 0; i < totalButtons; i++) {
@@ -177,7 +301,6 @@ public class DetailedInfoActivity extends AppCompatActivity {
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(getResources().getColor(R.color.black, null));
-
 
     }
 }
