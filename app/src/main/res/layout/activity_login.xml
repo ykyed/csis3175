@@ -8,17 +8,8 @@
     tools:context=".view.LoginActivity">
 
     <include
+        android:id="@+id/actionbar"
         layout="@layout/toolbar_logo_layout"/>
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login Activity"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -27,7 +18,11 @@
         android:orientation="vertical"
         android:gravity="center"
         android:padding="16dp"
-        android:background="#000000"> <!-- Black background -->
+        android:layout_marginTop="70dp"
+        android:background="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/actionbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <TextView
             android:id="@+id/sign_in_text"
