@@ -1,26 +1,95 @@
 package com.example.project.view;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RatingBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.project.R;
+import com.example.project.model.DBHelper;
 
 public class ReviewActivity extends AppCompatActivity {
+
+    private ImageView productImage;
+    private TextView productName;
+    private RatingBar ratingBar;
+    private EditText reviewHeadline;
+    private EditText reviewComment;
+    private Button submitReviewButton;
+    private DBHelper dbHelper;
+    private int shoeId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_review);
+
+        // DBHelper
+        dbHelper = DBHelper.getInstance(this);
+
+        shoeId = getIntent().getIntExtra("SHOE_ID", -1);
+
+        productImage = findViewById(R.id.product_image);
+        productName = findViewById(R.id.product_name);
+        ratingBar = findViewById(R.id.rating_bar);
+        reviewHeadline = findViewById(R.id.review_headline);
+        reviewComment = findViewById(R.id.review_comment);
+        submitReviewButton = findViewById(R.id.submit_review);
+
+        submitReviewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                submitReview();
+            }
+        });
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        productName.setText("Nike Air Force 1");
+
+    }
+
+    private void submitReview() {
+        float rating = ratingBar.getRating();
+        String headline = reviewHeadline.getText().toString().trim();
+        String comment = reviewComment.getText().toString().trim();
+
+        // Validate inputs
+        if (rating == 0) {
+            Toast.makeText(this, "Please provide a rating.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (headline.isEmpty()) {
+            Toast.makeText(this, "Please provide a review headline.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (comment.isEmpty()) {
+            Toast.makeText(this, "Please provide a comment.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Insert review into database
+        dbHelper.addReview(shoeId, rating, headline, comment);
+
+        // Show a confirmation message
+        Toast.makeText(this, "Review submitted successfully!", Toast.LENGTH_SHORT).show();
+
+        // Clear input fields
+        ratingBar.setRating(0);
+        reviewHeadline.setText("");
+        reviewComment.setText("");
     }
 }
