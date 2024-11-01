@@ -41,4 +41,28 @@ public class ShoeDAO {
 
         return shoes;
     }
+
+    public Shoe getShoe(String productCode) {
+        SQLiteDatabase db =  DBHelper.getInstance(context).getReadableDatabase();
+        Shoe shoe = new Shoe();
+        String query = "SELECT * FROM " + Shoe.TABLE_NAME + " WHERE productCode = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{productCode});
+
+        if (cursor != null && cursor.moveToFirst()) {
+            shoe.setTitle(cursor.getString(cursor.getColumnIndexOrThrow(Shoe.TITLE_COL)));
+            shoe.setPrice(cursor.getDouble(cursor.getColumnIndexOrThrow(Shoe.PRICE_COL)));
+            shoe.setRating(cursor.getDouble(cursor.getColumnIndexOrThrow(Shoe.RATING_COL)));
+            shoe.setReviewCount(cursor.getInt(cursor.getColumnIndexOrThrow(Shoe.REVIEW_COUNT_COL)));
+            shoe.setColor(cursor.getString(cursor.getColumnIndexOrThrow(Shoe.COLOR_COL)));
+            shoe.setStyle(cursor.getString(cursor.getColumnIndexOrThrow(Shoe.STYLE_COL)));
+            shoe.setBrand(cursor.getString(cursor.getColumnIndexOrThrow(Shoe.BRAND_COL)));
+            shoe.setThumbnail(cursor.getString(cursor.getColumnIndexOrThrow(Shoe.THUMBNAIL_COL)));
+        }
+        if (cursor != null) {
+            cursor.close();
+        }
+        db.close();
+
+        return shoe;
+    }
 }

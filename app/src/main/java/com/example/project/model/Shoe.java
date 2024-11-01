@@ -2,6 +2,7 @@ package com.example.project.model;
 
 public class Shoe {
 
+    public static final String TABLE_NAME = "shoes";
     public static final String ID_COL = "id";
     public static final String PRODUCT_CODE_COL = "productCode";
     public static final String TITLE_COL = "title";

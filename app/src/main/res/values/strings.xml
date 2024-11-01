@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">GoShoes</string>
+    <string name="key_productcode">productCode</string>
 </resources>

@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.view.menu.ShowableListMenu;
 import androidx.core.content.ContextCompat;
 
 import androidx.activity.EdgeToEdge;
@@ -29,12 +30,17 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.bumptech.glide.Glide;
 import com.example.project.R;
+import com.example.project.model.ReviewInfo;
+import com.example.project.model.ReviewInfoDAO;
 import com.example.project.model.Shoe;
+import com.example.project.model.ShoeDAO;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -52,6 +58,11 @@ public class DetailedInfoActivity extends AppCompatActivity {
     private LinearLayout reviewListContainer;
     private TextView reviewMessage;
 
+    private ShoeDAO shoeDAO;
+    private ReviewInfoDAO reviewInfoDAO;
+    private String productCode;
+    private Shoe shoeInfo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +75,16 @@ public class DetailedInfoActivity extends AppCompatActivity {
         });
         initActionbarLayout();
 
+        shoeDAO = new ShoeDAO(this);
+        reviewInfoDAO = new ReviewInfoDAO(this);
+
+        productCode = getIntent().getStringExtra(getString(R.string.key_productcode));
+        shoeInfo = shoeDAO.getShoe(productCode);
+
+        initLayout();
+    }
+
+    private void initLayout() {
         txtStarRate = findViewById(R.id.txtStarRate);
         txtProductName = findViewById(R.id.txtProductName);
         txtProductPrice = findViewById(R.id.txtProductPrice);
@@ -77,18 +98,21 @@ public class DetailedInfoActivity extends AppCompatActivity {
         reviewListContainer = findViewById(R.id.reviewListContainer);
         reviewMessage = findViewById(R.id.reviewMessage);
 
-        txtStarRate.setText("" + this.getIntent().getExtras().getString("rating"));
-        txtProductName.setText("" + this.getIntent().getExtras().getString("title"));
-        txtProductPrice.setText("$ " + this.getIntent().getExtras().getString("price"));
+        txtStarRate.setText(String.valueOf(shoeInfo.getRating()));
+        txtProductName.setText(shoeInfo.getTitle());
+        txtProductPrice.setText("$ " + shoeInfo.getPrice());
 
-        String imageUrl = this.getIntent().getExtras().getString("thumbnail");
+        String imageUrl = shoeInfo.getThumbnail();
         Glide.with(this)
                 .load(imageUrl)
                 .into(imageView2);
-        loadShoeDataAndReviews();;
+        //loadShoeDataAndReviews();;
+
+        displayReviews();
     }
 
     // review part
+    /*
     private void loadShoeDataAndReviews() {
         String shoeDataJson = loadJSONFromAsset("shoes_data.json");
         String reviewDataJson = loadJSONFromAsset("review_data.json");
@@ -123,7 +147,9 @@ public class DetailedInfoActivity extends AppCompatActivity {
             }
         }
     }
+    */
 
+    /*
     private String loadJSONFromAsset(String fileName) {
         StringBuilder jsonString = new StringBuilder();
         AssetManager assetManager = getAssets(); // Get the asset manager
@@ -142,7 +168,9 @@ public class DetailedInfoActivity extends AppCompatActivity {
 
         return jsonString.toString(); // Return the JSON string
     }
+    */
 
+    /*
     private void displayReviews(String reviewJson, String productCode) {
         try {
             JSONObject reviewObject = new JSONObject(reviewJson);
@@ -172,6 +200,24 @@ public class DetailedInfoActivity extends AppCompatActivity {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+     */
+
+    private void displayReviews() {
+
+        if (shoeInfo.getReviewCount() > 0) {
+            // show review
+            reviewMessage.setVisibility(View.GONE);
+            ArrayList<ReviewInfo> reviews = reviewInfoDAO.getReviewsByPrductCode(productCode);
+            if (reviews != null) {
+                for(int i = 0; i < reviews.size(); i++) {
+                    addReviewToView(reviews.get(i).getTitle(), reviews.get(i).getComment(), reviews.get(i).getRating()) ;
+                }
+            }
+        }
+        else {
+            reviewMessage.setVisibility(View.VISIBLE);
         }
     }
 
@@ -301,6 +347,5 @@ public class DetailedInfoActivity extends AppCompatActivity {
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(getResources().getColor(R.color.black, null));
-
     }
 }
