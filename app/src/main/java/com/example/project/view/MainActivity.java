@@ -15,6 +15,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project.R;
 import com.example.project.model.DBHelper;
@@ -25,9 +27,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private GridView gridView;
+    private RecyclerView recyclerView;
     private ShoeListAdapter shoeListAdapter;
-    private DBHelper dbHelper;
     private ShoeDAO shoeDAO;
 
     @Override
@@ -41,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        dbHelper = DBHelper.getInstance(this);
         shoeDAO = new ShoeDAO(this);
 
         initActionbarLayout();
@@ -50,22 +50,22 @@ public class MainActivity extends AppCompatActivity {
 
     private void initLayout() {
 
-        gridView = findViewById(R.id.gridView);
+        recyclerView = findViewById(R.id.recyclerView);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 2);
+        recyclerView.setLayoutManager(layoutManager);
 
         ArrayList<Shoe> shoeList = shoeDAO.getAllShoes();
-        shoeListAdapter = new ShoeListAdapter(this, shoeList);
-        gridView.setAdapter(shoeListAdapter);
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        shoeListAdapter = new ShoeListAdapter(this, shoeList, new ShoeListAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Shoe selectedItem = shoeList.get(position);
+            public void onItemClick(Shoe shoe) {
                 Intent intent = new Intent(MainActivity.this, DetailedInfoActivity.class);
-                intent.putExtra(getString(R.string.key_productcode), selectedItem.getProductCode());
+                intent.putExtra(getString(R.string.key_productcode), shoe.getProductCode());
 
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
+        recyclerView.setAdapter(shoeListAdapter);
     }
 
     private void initActionbarLayout() {

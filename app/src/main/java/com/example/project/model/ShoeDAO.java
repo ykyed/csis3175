@@ -1,5 +1,6 @@
 package com.example.project.model;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -64,5 +65,19 @@ public class ShoeDAO {
         db.close();
 
         return shoe;
+    }
+
+    public void updateShoe(Shoe shoe) {
+        SQLiteDatabase db =  DBHelper.getInstance(context).getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(Shoe.RATING_COL, shoe.getRating());
+        values.put(Shoe.REVIEW_COUNT_COL, shoe.getReviewCount());
+        String selection = Shoe.PRODUCT_CODE_COL + " = ?";
+        String[] selectionArgs = {shoe.getProductCode()};
+
+        db.update(Shoe.TABLE_NAME, values, selection, selectionArgs);
+
+        db.close();
     }
 }
