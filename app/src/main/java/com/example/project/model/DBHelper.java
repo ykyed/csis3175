@@ -2,6 +2,7 @@ package com.example.project.model;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -15,7 +16,7 @@ import java.lang.ref.WeakReference;
 public class DBHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "goshoes.db";
-    private static final int DB_VERSION = 1;
+    private static final int DB_VERSION = 16;
 
     private static DBHelper instance;
     private final WeakReference<Context> context;
@@ -69,19 +70,24 @@ public class DBHelper extends SQLiteOpenHelper {
 
         db.execSQL(createUserInfoTable);
 
-        insertInitShoeData(db);
         insertInitReviewData(db);
+        insertInitShoeData(db);
         insertInitUserInfo(db);
+
+        updateReviewCountInShoe(db);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + ReviewInfo.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + Shoe.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + CartInfo.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + UserInfo.TABLE_NAME);
         onCreate(db);
     }
 
     private void insertInitShoeData(SQLiteDatabase db) {
+
         try {
             InputStream is = context.get().getAssets().open("shoes_data.json");
             int size = is.available();
@@ -101,6 +107,7 @@ public class DBHelper extends SQLiteOpenHelper {
             JSONArray shoesArray = jsonObject.getJSONArray("shoes");
             for (int i = 0; i < shoesArray.length(); i++) {
                 JSONObject shoeObject = shoesArray.getJSONObject(i);
+
                 String productCode = shoeObject.getString(Shoe.PRODUCT_CODE_COL);
                 String title = shoeObject.getString(Shoe.TITLE_COL);
                 double price = shoeObject.getDouble(Shoe.PRICE_COL);
@@ -110,6 +117,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 String style = shoeObject.getString(Shoe.STYLE_COL);
                 String brand = shoeObject.getString(Shoe.BRAND_COL);
                 String thumbnail = shoeObject.getString(Shoe.THUMBNAIL_COL);
+
                 ContentValues values = new ContentValues();
                 values.put(Shoe.PRODUCT_CODE_COL, productCode);
                 values.put(Shoe.TITLE_COL, title);
@@ -124,6 +132,42 @@ public class DBHelper extends SQLiteOpenHelper {
             }
         } catch (Exception e) {
             Log.e("DBHelper", "Error reading JSON file", e);
+        }
+    }
+
+    private void updateReviewCountInShoe(SQLiteDatabase db) {
+
+        try {
+            Cursor shoeCursor = db.query(Shoe.TABLE_NAME, new String[]{Shoe.PRODUCT_CODE_COL}, null, null, null, null, null);
+
+            if (shoeCursor != null && shoeCursor.moveToFirst()) {
+                do {
+                    String productCode = shoeCursor.getString(shoeCursor.getColumnIndexOrThrow(Shoe.PRODUCT_CODE_COL));
+
+                    Cursor reviewCursor = db.query(ReviewInfo.TABLE_NAME, new String[]{ReviewInfo.RATING_COL},
+                            ReviewInfo.PRODUCT_CODE_COL + " = ?", new String[]{productCode}, null, null, null);
+
+                    double totalRating = 0.0;
+                    int reviewCount = 0;
+
+                    if (reviewCursor != null && reviewCursor.moveToFirst()) {
+                        do {
+                            totalRating += reviewCursor.getDouble(reviewCursor.getColumnIndexOrThrow(ReviewInfo.RATING_COL));
+                            reviewCount++;
+                        } while (reviewCursor.moveToNext());
+                        reviewCursor.close();
+                    }
+
+                    ContentValues values = new ContentValues();
+                    values.put(Shoe.RATING_COL, totalRating);
+                    values.put(Shoe.REVIEW_COUNT_COL, reviewCount);
+
+                    db.update(Shoe.TABLE_NAME, values, Shoe.PRODUCT_CODE_COL + " = ?", new String[]{productCode});
+                } while (shoeCursor.moveToNext());
+                shoeCursor.close();
+            }
+        } catch (Exception e) {
+            Log.e("DBHelper", "Error updating review counts in Shoe table", e);
         }
     }
 

@@ -1,5 +1,7 @@
 package com.example.project.model;
 
+import android.annotation.SuppressLint;
+
 public class Shoe {
 
     public static final String TABLE_NAME = "shoes";
@@ -18,7 +20,7 @@ public class Shoe {
     private String productCode;
     private String title;
     private double price;
-    private double rating;
+    private double totalRating;
     private int reviewCount;
     private String color;
     private String style;
@@ -57,12 +59,18 @@ public class Shoe {
         this.price = price;
     }
 
+    @SuppressLint("DefaultLocale")
     public double getRating() {
-        return rating;
+        if (totalRating > 0) {
+            return Double.parseDouble(String.format("%.1f", totalRating / reviewCount));
+        }
+        else {
+            return 0;
+        }
     }
 
     public void setRating(double rating) {
-        this.rating = rating;
+        this.totalRating += rating;
     }
 
     public int getReviewCount() {
@@ -104,6 +112,4 @@ public class Shoe {
     public void setThumbnail(String thumbnail) {
         this.thumbnail = thumbnail;
     }
-
-
 }
