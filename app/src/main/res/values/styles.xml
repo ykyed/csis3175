@@ -9,4 +9,5 @@
         <item name="backgroundTint">@android:color/white</item>
         <item name="tint">@android:color/black</item>
     </style>
+
 </resources>

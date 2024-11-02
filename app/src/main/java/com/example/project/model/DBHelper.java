@@ -12,11 +12,12 @@ import org.json.JSONObject;
 
 import java.io.InputStream;
 import java.lang.ref.WeakReference;
+import java.nio.charset.StandardCharsets;
 
 public class DBHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "goshoes.db";
-    private static final int DB_VERSION = 16;
+    private static final int DB_VERSION = 19;
 
     private static DBHelper instance;
     private final WeakReference<Context> context;
@@ -70,9 +71,19 @@ public class DBHelper extends SQLiteOpenHelper {
 
         db.execSQL(createUserInfoTable);
 
+        String createCartInfoTable = "CREATE TABLE " + CartInfo.TABLE_NAME + " ("
+                + CartInfo.ID_COL + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + CartInfo.EMAIL_COL + " TEXT, "
+                + CartInfo.PRODUCT_CODE_COL + " TEXT, "
+                + CartInfo.SIZE_COL + " TEXT, "
+                + CartInfo.QUANTITY_COL + " TEXT)";
+
+        db.execSQL(createCartInfoTable);
+
         insertInitReviewData(db);
         insertInitShoeData(db);
         insertInitUserInfo(db);
+        insertInitCartInfo(db);
 
         updateReviewCountInShoe(db);
     }
@@ -102,7 +113,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 totalBytesRead += bytesRead;
             }
             is.close();
-            String json = new String(buffer, "UTF-8");
+            String json = new String(buffer, StandardCharsets.UTF_8);
             JSONObject jsonObject = new JSONObject(json);
             JSONArray shoesArray = jsonObject.getJSONArray("shoes");
             for (int i = 0; i < shoesArray.length(); i++) {
@@ -186,7 +197,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 totalBytesRead += bytesRead;
             }
             is.close();
-            String json = new String(buffer, "UTF-8");
+            String json = new String(buffer, StandardCharsets.UTF_8);
             JSONObject jsonObject = new JSONObject(json);
             JSONArray reviewArray = jsonObject.getJSONArray("review");
             for (int i = 0; i < reviewArray.length(); i++) {
@@ -218,5 +229,64 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(UserInfo.LAST_NAME_COL, "Do");
 
         db.insert(UserInfo.TABLE_NAME, null, values);
+    }
+
+    private void insertInitCartInfo(SQLiteDatabase db) {
+
+        ContentValues values = new ContentValues();
+
+        values.put(CartInfo.PRODUCT_CODE_COL, "CW2288-111");
+        values.put(CartInfo.EMAIL_COL, "wooastudio1012@gmail.com");
+        values.put(CartInfo.SIZE_COL, 10.5);
+        values.put(CartInfo.QUANTITY_COL, 1);
+        db.insert(CartInfo.TABLE_NAME, null, values);
+
+        values = new ContentValues();
+
+        values.put(CartInfo.PRODUCT_CODE_COL, "JH9227");
+        values.put(CartInfo.EMAIL_COL, "wooastudio1012@gmail.com");
+        values.put(CartInfo.SIZE_COL, 11);
+        values.put(CartInfo.QUANTITY_COL, 2);
+        db.insert(CartInfo.TABLE_NAME, null, values);
+
+        values = new ContentValues();
+
+        values.put(CartInfo.PRODUCT_CODE_COL, "1201a256-121");
+        values.put(CartInfo.EMAIL_COL, "wooastudio1012@gmail.com");
+        values.put(CartInfo.SIZE_COL, 11);
+        values.put(CartInfo.QUANTITY_COL, 2);
+        db.insert(CartInfo.TABLE_NAME, null, values);
+
+        values = new ContentValues();
+
+        values.put(CartInfo.PRODUCT_CODE_COL, "1019066K-ALP");
+        values.put(CartInfo.EMAIL_COL, "wooastudio1012@gmail.com");
+        values.put(CartInfo.SIZE_COL, 11);
+        values.put(CartInfo.QUANTITY_COL, 2);
+        db.insert(CartInfo.TABLE_NAME, null, values);
+
+        values = new ContentValues();
+
+        values.put(CartInfo.PRODUCT_CODE_COL, "FV5951-001");
+        values.put(CartInfo.EMAIL_COL, "wooastudio1012@gmail.com");
+        values.put(CartInfo.SIZE_COL, 11);
+        values.put(CartInfo.QUANTITY_COL, 2);
+        db.insert(CartInfo.TABLE_NAME, null, values);
+
+        values = new ContentValues();
+
+        values.put(CartInfo.PRODUCT_CODE_COL, "61.98433");
+        values.put(CartInfo.EMAIL_COL, "wooastudio1012@gmail.com");
+        values.put(CartInfo.SIZE_COL, 11);
+        values.put(CartInfo.QUANTITY_COL, 2);
+        db.insert(CartInfo.TABLE_NAME, null, values);
+
+        values = new ContentValues();
+
+        values.put(CartInfo.PRODUCT_CODE_COL, "1201a256-121");
+        values.put(CartInfo.EMAIL_COL, "wooastudio1012@gmail.com");
+        values.put(CartInfo.SIZE_COL, 11);
+        values.put(CartInfo.QUANTITY_COL, 2);
+        db.insert(CartInfo.TABLE_NAME, null, values);
     }
 }

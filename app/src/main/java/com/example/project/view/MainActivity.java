@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
@@ -19,7 +17,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project.R;
-import com.example.project.model.DBHelper;
 import com.example.project.model.Shoe;
 import com.example.project.model.ShoeDAO;
 
@@ -53,13 +50,16 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(layoutManager);
+        int verticalSpacing = (int) getResources().getDimension(R.dimen.vertical_spacing);
+        int horizontalSpacing = (int) getResources().getDimension(R.dimen.horizontal_spacing);
+        recyclerView.addItemDecoration(new SpacingItemDecoration(verticalSpacing, horizontalSpacing));
 
         ArrayList<Shoe> shoeList = shoeDAO.getAllShoes();
         shoeListAdapter = new ShoeListAdapter(this, shoeList, new ShoeListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Shoe shoe) {
                 Intent intent = new Intent(MainActivity.this, DetailedInfoActivity.class);
-                intent.putExtra(getString(R.string.key_productcode), shoe.getProductCode());
+                intent.putExtra(getString(R.string.key_product_code), shoe.getProductCode());
 
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);

@@ -25,6 +25,7 @@ public class CartInfoDAO {
             do {
                 CartInfo info = new CartInfo();
                 info.setId(cursor.getInt(cursor.getColumnIndexOrThrow(CartInfo.ID_COL)));
+                info.setEmail(cursor.getString(cursor.getColumnIndexOrThrow(CartInfo.EMAIL_COL)));
                 info.setProductCode(cursor.getString(cursor.getColumnIndexOrThrow(CartInfo.PRODUCT_CODE_COL)));
                 info.setSize(cursor.getDouble(cursor.getColumnIndexOrThrow(CartInfo.SIZE_COL)));
                 info.setQuantity(cursor.getInt(cursor.getColumnIndexOrThrow(CartInfo.QUANTITY_COL)));
@@ -82,8 +83,8 @@ public class CartInfoDAO {
 
         ContentValues values = new ContentValues();
         values.put(CartInfo.QUANTITY_COL, cartInfo.getQuantity());
-        String selection = CartInfo.EMAIL_COL + " = ?";
-        String[] selectionArgs = {cartInfo.getEmail()};
+        String selection = CartInfo.ID_COL + " = ?";
+        String[] selectionArgs = {String.valueOf(cartInfo.getId())};
 
         db.update(CartInfo.TABLE_NAME, values, selection, selectionArgs);
 

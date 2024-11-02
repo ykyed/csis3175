@@ -1,4 +1,17 @@
 <resources>
     <string name="app_name">GoShoes</string>
-    <string name="key_productcode">productCode</string>
+    <string name="key_product_code">productCode</string>
+    <string name="sub_total">SubTotal</string>
+    <string name="shipping">Shipping</string>
+    <string name="free">Free</string>
+    <string name="total">Total</string>
+    <string name="checkout">Checkout</string>
+    <string name="filter">Filter</string>
+    <string name="thumbnail">Thumbnail</string>
+    <string name="btn_increase">Increase</string>
+    <string name="btn_decrease">Decrease</string>
+    <string name="app_logo">App logo</string>
+    <string name="login">Login</string>
+    <string name="cart">Cart</string>
+
 </resources>

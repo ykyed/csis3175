@@ -7,4 +7,7 @@
     <color name="colorAccent">#FFFF00</color>
     <color name="ratingbar">#d7bb1d</color>
     <color name="transparent">#00ffffff</color>
+
+    <color name="activity_background">#22000000</color>
+    <color name="line_divide_background">#aaaaaa</color>
 </resources>

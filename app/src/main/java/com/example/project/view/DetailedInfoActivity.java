@@ -78,7 +78,7 @@ public class DetailedInfoActivity extends AppCompatActivity {
         shoeDAO = new ShoeDAO(this);
         reviewInfoDAO = new ReviewInfoDAO(this);
 
-        productCode = getIntent().getStringExtra(getString(R.string.key_productcode));
+        productCode = getIntent().getStringExtra(getString(R.string.key_product_code));
         shoeInfo = shoeDAO.getShoe(productCode);
 
         initLayout();

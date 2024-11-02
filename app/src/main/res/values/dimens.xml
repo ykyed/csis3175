@@ -1,0 +1,5 @@
+<!-- res/values/dimens.xml -->
+<resources>
+    <dimen name="vertical_spacing">2dp</dimen>
+    <dimen name="horizontal_spacing">2dp</dimen>
+</resources>
