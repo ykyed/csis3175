@@ -2,32 +2,43 @@ package com.example.project.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.splashscreen.SplashScreen;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project.R;
 import com.example.project.model.Shoe;
 import com.example.project.model.ShoeDAO;
+import com.example.project.viewmodel.FilterViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements FilterFragment.FilterListener {
 
     private RecyclerView recyclerView;
+    private FloatingActionButton fab;
     private ShoeListAdapter shoeListAdapter;
     private ShoeDAO shoeDAO;
+    private FilterViewModel filterViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
 
         initActionbarLayout();
         initLayout();
+
+        filterViewModel = new ViewModelProvider(this).get(FilterViewModel.class);
     }
 
     private void initLayout() {
@@ -68,6 +81,38 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         recyclerView.setAdapter(shoeListAdapter);
+
+        fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FilterFragment filterFragment = new FilterFragment();
+
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.container, filterFragment)
+                        .addToBackStack(null)
+                        .commit();
+
+                fab.setVisibility(View.GONE);
+            }
+        });
+
+        getSupportFragmentManager().registerFragmentLifecycleCallbacks(new FragmentManager.FragmentLifecycleCallbacks() {
+            @Override
+            public void onFragmentDetached(@NonNull FragmentManager fm, @NonNull Fragment f) {
+                super.onFragmentDetached(fm, f);
+                if (fab.getVisibility() != View.VISIBLE) {
+                    fab.setVisibility(View.VISIBLE);
+                }
+            }
+        }, true);
+    }
+
+    @Override
+    public void onFilterApplied(Set<String> brands, Set<String> colors, Set<String> styles) {
+        List<Shoe> filteredShoes = shoeDAO.filterShoes(brands, colors, styles);
+        shoeListAdapter.updateData(filteredShoes);
     }
 
     private void initActionbarLayout() {
