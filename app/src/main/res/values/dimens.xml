@@ -2,4 +2,5 @@
 <resources>
     <dimen name="vertical_spacing">2dp</dimen>
     <dimen name="horizontal_spacing">2dp</dimen>
+    <dimen name="vertical_spacing_filter">-7dp</dimen>
 </resources>

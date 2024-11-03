@@ -1,5 +1,6 @@
 package com.example.project.view;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -28,7 +29,7 @@ import com.bumptech.glide.Glide;
 public class ShoeListAdapter extends RecyclerView.Adapter<ShoeListAdapter.ViewHolder> {
 
     private final Context context;
-    private final List<Shoe> shoeList;
+    private List<Shoe> shoeList;
     private final OnItemClickListener listener;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -126,6 +127,12 @@ public class ShoeListAdapter extends RecyclerView.Adapter<ShoeListAdapter.ViewHo
     @Override
     public int getItemCount() {
         return shoeList.size();
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void updateData(List<Shoe> newShoeList) {
+        shoeList = newShoeList;
+        notifyDataSetChanged();
     }
 
     private Bitmap cropTop(Bitmap bitmap, int cropHeight) {
