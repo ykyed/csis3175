@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -38,7 +39,6 @@ public class MainActivity extends AppCompatActivity implements FilterFragment.Fi
     private FloatingActionButton fab;
     private ShoeListAdapter shoeListAdapter;
     private ShoeDAO shoeDAO;
-    private FilterViewModel filterViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity implements FilterFragment.Fi
         initActionbarLayout();
         initLayout();
 
-        filterViewModel = new ViewModelProvider(this).get(FilterViewModel.class);
     }
 
     private void initLayout() {
@@ -79,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements FilterFragment.Fi
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
-        });qqqq
+        });
         recyclerView.setAdapter(shoeListAdapter);
 
         fab = findViewById(R.id.fab);
@@ -122,6 +121,8 @@ public class MainActivity extends AppCompatActivity implements FilterFragment.Fi
 
         ImageButton imgLogin = findViewById(R.id.imgLogin);
         ImageButton imgCart = findViewById(R.id.imgCart);
+        TextView txtName = findViewById(R.id.txtName);
+        txtName.setText("Hi, Dan");
 
         imgLogin.setOnClickListener(new View.OnClickListener() {
             @Override
