@@ -5,7 +5,9 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.Project" parent="Base.Theme.Project" />
+    <style name="Theme.Project" parent="Base.Theme.Project" >
+        <item name="android:windowBackground">@android:color/white</item>
+    </style>
 
     <style name="Theme.App.SplashScreen" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/black</item>

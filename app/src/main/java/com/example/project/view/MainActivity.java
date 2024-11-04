@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements FilterFragment.Fi
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
-        });
+        });qqqq
         recyclerView.setAdapter(shoeListAdapter);
 
         fab = findViewById(R.id.fab);
