@@ -13,5 +13,9 @@
     <string name="app_logo">App logo</string>
     <string name="login">Login</string>
     <string name="cart">Cart</string>
+    <string name="user_info_shared_preference">CurrentUserInfo</string>
+
+    <string name="key_email">email</string>
+    <string name="key_first_name">firstname</string>
 
 </resources>

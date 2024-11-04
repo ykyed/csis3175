@@ -34,8 +34,8 @@
             android:gravity="center|end">
 
             <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
+                android:layout_width="50dp"
+                android:layout_height="match_parent">
 
                 <ImageButton
                     android:id="@+id/imgCart"
@@ -46,19 +46,18 @@
                     android:scaleType="fitCenter"
                     android:src="@drawable/cart"
                     app:tint="@color/white"
-                    android:layout_marginEnd="10dp"/>
+                    android:layout_gravity="center"/>
 
                 <TextView
-                    android:id="@+id/cart_badge"
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
+                    android:id="@+id/txtCartBadge"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
                     android:layout_gravity="top|end"
                     android:background="@drawable/badge_background"
                     android:gravity="center"
-                    android:text="1"
                     android:textColor="@color/black"
                     android:textSize="12sp"
-/>
+                    android:layout_marginTop="12dp"/>
 
             </FrameLayout>
 
@@ -78,10 +77,9 @@
                 android:id="@+id/txtName"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Hi, Dan"
                 android:textColor="@color/white"
                 android:gravity="bottom"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="12dp"
                 android:textSize="15sp"/>
             
             <View

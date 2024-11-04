@@ -7,11 +7,13 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -44,7 +46,7 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class DetailedInfoActivity extends AppCompatActivity {
+public class DetailedInfoActivity extends ToolbarBaseActivity {
 
     private TextView txtProductName, txtProductPrice, txtStarRate;
     private ImageView imageView2;
@@ -66,14 +68,11 @@ public class DetailedInfoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_detailed_info);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
-        initActionbarLayout();
+
+        FrameLayout contentFrame = findViewById(R.id.contentFrame);
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View contentView = inflater.inflate(R.layout.activity_detailed_info, contentFrame, false);
+        contentFrame.addView(contentView);
 
         shoeDAO = new ShoeDAO(this);
         reviewInfoDAO = new ReviewInfoDAO(this);
@@ -306,46 +305,5 @@ public class DetailedInfoActivity extends AppCompatActivity {
     public void finish() {
         super.finish();
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-    }
-
-    private void initActionbarLayout() {
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        ImageButton imgLogin = findViewById(R.id.imgLogin);
-        ImageButton imgCart = findViewById(R.id.imgCart);
-        Button btnReview = findViewById(R.id.btnReview);
-
-        imgLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DetailedInfoActivity.this, LoginActivity.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-            }
-        });
-
-        imgCart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DetailedInfoActivity.this, CartActivity.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-            }
-        });
-
-        btnReview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DetailedInfoActivity.this, ReviewActivity.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-            }
-        });
-
-        Window window = getWindow();
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(getResources().getColor(R.color.black, null));
     }
 }

@@ -8,9 +8,6 @@
     tools:context=".view.DetailedInfoActivity"
     android:orientation="vertical">
 
-    <include
-        layout="@layout/toolbar_layout"/>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">

@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.project.R;
+
 import java.util.Map;
 
 public class UserInfoDAO {
@@ -37,7 +39,7 @@ public class UserInfoDAO {
             String originPwd = cursor.getString(cursor.getColumnIndexOrThrow(UserInfo.PASSWORD_COL));
             if (originPwd.equals(password)) {
                 String firstName = cursor.getString(cursor.getColumnIndexOrThrow(UserInfo.FIRST_NAME_COL));
-                info = Map.of("email", email, "firstname", firstName);
+                info = Map.of(context.getResources().getString(R.string.key_email), email, context.getResources().getString(R.string.key_first_name), firstName);
             }
         }
         if (cursor != null) {

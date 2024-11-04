@@ -14,7 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Project"
         tools:targetApi="31">
-
+        <activity
+            android:name=".view.ToolbarBaseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.ToolbarLogoBaseActivity"
+            android:exported="false" />
         <activity
             android:name=".view.CartActivity"
             android:exported="false" />
@@ -36,6 +41,7 @@
             android:theme="@style/Theme.App.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
