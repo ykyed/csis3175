@@ -11,14 +11,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project.R;
 import com.example.project.model.ShoeDAO;
 import com.example.project.viewmodel.FilterViewModel;
 
-import java.util.List;
 import java.util.Set;
 
 public class FilterFragment extends Fragment {

@@ -8,9 +8,6 @@
     tools:context=".view.CartActivity"
     android:background="@color/activity_background">
 
-    <include
-        layout="@layout/toolbar_logo_layout"/>
-
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -29,7 +26,7 @@
                 android:gravity="center"
                 android:stretchMode="columnWidth"
                 android:background="@color/white"
-                android:layout_margin="10dp"/>
+                android:layout_margin="5dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -38,7 +35,7 @@
                 android:padding="5dp"
                 android:gravity="center"
                 android:background="@color/white"
-                android:layout_margin="10dp">
+                android:layout_margin="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -53,14 +50,16 @@
                         android:layout_height="wrap_content"
                         android:text="@string/sub_total"
                         android:layout_weight="1"
-                        android:gravity="start"/>
+                        android:gravity="start"
+                        android:textColor="@color/black"/>
 
                     <TextView
                         android:id="@+id/txtCartTotal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="end"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold"
+                        android:textColor="@color/black"/>
                 </LinearLayout>
 
                 <View
@@ -82,14 +81,16 @@
                         android:layout_height="wrap_content"
                         android:text="@string/shipping"
                         android:layout_weight="1"
-                        android:gravity="start"/>
+                        android:gravity="start"
+                        android:textColor="@color/black"/>
 
                     <TextView
                         android:id="@+id/txtShipping"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/free"
-                        android:gravity="end"/>
+                        android:gravity="end"
+                        android:textColor="@color/black"/>
                 </LinearLayout>
 
                 <View
@@ -112,14 +113,16 @@
                         android:text="@string/total"
                         android:layout_weight="1"
                         android:gravity="start"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold"
+                        android:textColor="@color/black"/>
 
                     <TextView
                         android:id="@+id/txtTotalPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="end"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold"
+                        android:textColor="@color/black"/>
                 </LinearLayout>
 
             </LinearLayout>
@@ -130,7 +133,9 @@
                 android:text="@string/checkout"
                 android:backgroundTint="@color/black"
                 android:layout_marginTop="10dp"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:layout_marginBottom="20dp"/>
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

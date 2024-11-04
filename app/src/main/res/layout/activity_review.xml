@@ -7,11 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".view.ReviewActivity">
 
-    <include
-        android:id="@+id/actionbar"
-        layout="@layout/toolbar_layout"/>
-
-
     <!-- Product Name -->
     <TextView
         android:id="@+id/product_name"
@@ -23,7 +18,8 @@
         app:layout_constraintTop_toBottomOf="@id/actionbar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginTop="8dp"
+        tools:ignore="NotSibling" />
 
     <!-- Overall Rating Label -->
     <TextView

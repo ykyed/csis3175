@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.project.R;
 import com.example.project.model.CartInfo;
-import com.example.project.model.CartInfoDAO;
 import com.example.project.model.Shoe;
 import com.example.project.model.ShoeDAO;
 
