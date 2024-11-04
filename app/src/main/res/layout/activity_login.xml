@@ -7,10 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".view.LoginActivity">
 
-    <include
-        android:id="@+id/actionbar"
-        layout="@layout/toolbar_logo_layout"/>
-
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"

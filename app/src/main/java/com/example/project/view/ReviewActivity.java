@@ -2,19 +2,18 @@ package com.example.project.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -25,7 +24,7 @@ import com.example.project.model.DBHelper;
 import com.example.project.model.ReviewInfo;
 import com.example.project.model.ReviewInfoDAO;
 
-public class ReviewActivity extends AppCompatActivity {
+public class ReviewActivity extends ToolbarLogoBaseActivity {
 
     //private ImageView productImage;
     private TextView productName;
@@ -41,14 +40,11 @@ public class ReviewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_review);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
-        initActionbarLayout();
+
+        FrameLayout contentFrame = findViewById(R.id.contentFrame);
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View contentView = inflater.inflate(R.layout.activity_review, contentFrame, false);
+        contentFrame.addView(contentView);
 
         // DBHelper
         dbHelper = DBHelper.getInstance(this);

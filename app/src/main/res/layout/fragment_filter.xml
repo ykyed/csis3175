@@ -17,10 +17,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Brand"
+                android:text="@string/brand"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/black"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/brandRecyclerView"
@@ -39,10 +40,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Color"
+                android:text="@string/color"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/black"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/colorRecyclerView"
@@ -61,10 +63,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Style"
+                android:text="@string/style"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/black"
+                />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/styleRecyclerView"
@@ -80,9 +84,8 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="16dp"/>
 
-            <!-- 적용 버튼 -->
-
             <LinearLayout
+                style="?android:attr/buttonBarStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -90,25 +93,27 @@
 
                 <Button
                     android:id="@+id/btnApply"
+                    style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Apply Filter"
+                    android:text="@string/apply_filter"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
-                    android:backgroundTint="@color/black"/>
+                    android:backgroundTint="@color/black"
+                    android:textColor="@color/white" />
 
                 <Button
                     android:id="@+id/btnReset"
+                    style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="reset Filter"
+                    android:text="@string/reset_filter"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
                     android:backgroundTint="#dddddd"
                     android:textColor="@color/black"/>
-
 
             </LinearLayout>
 

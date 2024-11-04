@@ -26,19 +26,22 @@
             android:textStyle="bold"
             android:maxLines="1"
             android:ellipsize="end"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/txtSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/txtPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
     </LinearLayout>
 
     <LinearLayout
@@ -50,8 +53,8 @@
 
         <ImageButton
             android:id="@+id/btnIncrease"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
             android:contentDescription="@string/btn_increase"
             android:src="@drawable/plus"
             android:scaleType="centerCrop"
@@ -65,12 +68,13 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp" />
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/black"/>
 
         <ImageButton
             android:id="@+id/btnDecrease"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
             android:contentDescription="@string/btn_decrease"
             android:src="@drawable/minus"
             android:scaleType="centerCrop"

@@ -18,4 +18,10 @@
     <string name="key_email">email</string>
     <string name="key_first_name">firstname</string>
 
+    <string name="brand">Brand</string>
+    <string name="color">Color</string>
+    <string name="style">Style</string>
+    <string name="apply_filter">Apply Filter</string>
+    <string name="reset_filter">Reset Filter</string>
+
 </resources>
