@@ -13,6 +13,7 @@ import org.json.JSONObject;
 import java.io.InputStream;
 import java.lang.ref.WeakReference;
 import java.nio.charset.StandardCharsets;
+import java.util.Random;
 
 public class DBHelper extends SQLiteOpenHelper {
 
@@ -84,6 +85,7 @@ public class DBHelper extends SQLiteOpenHelper {
         insertInitShoeData(db);
         insertInitUserInfo(db);
         insertInitCartInfo(db);
+        insertInitSizeInfo(db);
 
         updateReviewCountInShoe(db);
     }
@@ -288,5 +290,31 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(CartInfo.SIZE_COL, 11);
         values.put(CartInfo.QUANTITY_COL, 2);
         db.insert(CartInfo.TABLE_NAME, null, values);
+    }
+
+    private void insertInitSizeInfo(SQLiteDatabase db) {
+
+        double[] sizeArr = {3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13 };
+        Random rand = new Random();
+
+        Cursor shoeCursor = db.query(Shoe.TABLE_NAME, new String[]{Shoe.PRODUCT_CODE_COL}, null, null, null, null, null);
+
+        if (shoeCursor != null && shoeCursor.moveToFirst()) {
+            do {
+                String productCode = shoeCursor.getString(shoeCursor.getColumnIndexOrThrow(Shoe.PRODUCT_CODE_COL));
+
+                for (int i = 0; i < sizeArr.length; i++) {
+
+                    ContentValues values = new ContentValues();
+
+                    values.put(SizeInfo.PRODUCT_CODE_COL, productCode);
+                    values.put(SizeInfo.SIZE_COL, sizeArr[i]);
+                    values.put(SizeInfo.QUANTITY_COL, rand.nextInt(10));
+
+                    db.insert(SizeInfo.TABLE_NAME, null, values);
+                }
+            } while (shoeCursor.moveToNext());
+            shoeCursor.close();
+        }
     }
 }
