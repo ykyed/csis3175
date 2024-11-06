@@ -23,6 +23,8 @@ import com.example.project.R;
 import com.example.project.model.DBHelper;
 import com.example.project.model.ReviewInfo;
 import com.example.project.model.ReviewInfoDAO;
+import com.example.project.model.Shoe;
+import com.example.project.model.ShoeDAO;
 
 public class ReviewActivity extends ToolbarLogoBaseActivity {
 
@@ -32,9 +34,10 @@ public class ReviewActivity extends ToolbarLogoBaseActivity {
     private EditText reviewHeadline;
     private EditText reviewComment;
     private Button submitReviewButton;
-    private DBHelper dbHelper;
-    private int shoeId;
+    //private DBHelper dbHelper;
+    private String productCode;
 
+    private ShoeDAO shoeDAO;
     private ReviewInfoDAO reviewInfoDAO;
 
     @Override
@@ -47,12 +50,14 @@ public class ReviewActivity extends ToolbarLogoBaseActivity {
         contentFrame.addView(contentView);
 
         // DBHelper
-        dbHelper = DBHelper.getInstance(this);
+        //dbHelper = DBHelper.getInstance(this);
         reviewInfoDAO = new ReviewInfoDAO(this);
+        shoeDAO = new ShoeDAO(this);
 
-        shoeId = getIntent().getIntExtra("SHOE_ID", -1);
+        productCode = getIntent().getStringExtra("product_code");
+        Shoe shoe = shoeDAO.getShoe(productCode);
 
-        //productImage = findViewById(R.id.product_image);
+
         productName = findViewById(R.id.product_name);
         ratingBar = findViewById(R.id.rating_bar);
         reviewHeadline = findViewById(R.id.review_headline);
@@ -67,7 +72,7 @@ public class ReviewActivity extends ToolbarLogoBaseActivity {
         });
 
 
-        productName.setText("Nike Air Force 1");
+        productName.setText(shoe.getTitle());
 
     }
 

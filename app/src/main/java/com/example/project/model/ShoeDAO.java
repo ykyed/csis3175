@@ -53,6 +53,7 @@ public class ShoeDAO {
 
         if (cursor != null && cursor.moveToFirst()) {
             shoe.setTitle(cursor.getString(cursor.getColumnIndexOrThrow(Shoe.TITLE_COL)));
+            shoe.setProductCode(cursor.getString(cursor.getColumnIndexOrThrow(Shoe.PRODUCT_CODE_COL)));
             shoe.setPrice(cursor.getDouble(cursor.getColumnIndexOrThrow(Shoe.PRICE_COL)));
             shoe.setRating(cursor.getDouble(cursor.getColumnIndexOrThrow(Shoe.RATING_COL)));
             shoe.setReviewCount(cursor.getInt(cursor.getColumnIndexOrThrow(Shoe.REVIEW_COUNT_COL)));
