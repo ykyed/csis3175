@@ -59,6 +59,7 @@ public class DetailedInfoActivity extends ToolbarBaseActivity {
     //review part
     private LinearLayout reviewListContainer;
     private TextView reviewMessage;
+    private Button btnReview;
 
     private ShoeDAO shoeDAO;
     private ReviewInfoDAO reviewInfoDAO;
@@ -107,6 +108,16 @@ public class DetailedInfoActivity extends ToolbarBaseActivity {
                 .into(imageView2);
         //loadShoeDataAndReviews();;
 
+        btnReview = findViewById(R.id.btnReview);
+        btnReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DetailedInfoActivity.this, ReviewActivity.class);
+                intent.putExtra("product_code", shoeInfo.getProductCode());
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            }
+        });
         displayReviews();
     }
 

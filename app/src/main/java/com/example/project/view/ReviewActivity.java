@@ -66,11 +66,6 @@ public class ReviewActivity extends ToolbarLogoBaseActivity {
             }
         });
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
 
         productName.setText("Nike Air Force 1");
 
@@ -115,35 +110,4 @@ public class ReviewActivity extends ToolbarLogoBaseActivity {
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
-    private void initActionbarLayout() {
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        ImageButton imgLogin = findViewById(R.id.imgLogin);
-        ImageButton imgCart = findViewById(R.id.imgCart);
-        Button btnReview = findViewById(R.id.btnReview);
-
-        imgLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ReviewActivity.this, LoginActivity.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-            }
-        });
-
-        imgCart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ReviewActivity.this, CartActivity.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-            }
-        });
-
-        Window window = getWindow();
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(getResources().getColor(R.color.black, null));
-    }
 }
