@@ -24,6 +24,8 @@ import com.example.project.R;
 import com.example.project.model.DBHelper;
 import com.example.project.model.ReviewInfo;
 import com.example.project.model.ReviewInfoDAO;
+import com.example.project.model.Shoe;
+import com.example.project.model.ShoeDAO;
 
 public class ReviewActivity extends AppCompatActivity {
 
@@ -77,6 +79,11 @@ public class ReviewActivity extends AppCompatActivity {
         });
 
         productName.setText("Nike Air Force 1");
+
+        String code = getIntent().getStringExtra("productcode");
+
+        ShoeDAO shoeDAO = new ShoeDAO(this);
+        Shoe shoe =  shoeDAO.getShoe(code);
 
     }
 

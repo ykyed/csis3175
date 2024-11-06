@@ -339,6 +339,7 @@ public class DetailedInfoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(DetailedInfoActivity.this, ReviewActivity.class);
+                intent.putExtra("productcode", shoeInfo.getProductCode());
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
