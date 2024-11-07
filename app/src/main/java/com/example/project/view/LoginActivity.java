@@ -84,18 +84,6 @@ public class LoginActivity extends ToolbarLogoBaseActivity {
             return;
         }
 
-        // Authenticate user (you need a method in DBHelper for this)
-        /*boolean isAuthenticated = dbHelper.checkUserCredentials(username, password);
-        if (isAuthenticated) {
-            Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show();
-
-            // Proceed to the next activity
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class); // MainActivity is your next screen
-            startActivity(intent);
-            finish();
-        } else {
-            Toast.makeText(this, "Invalid username or password", Toast.LENGTH_SHORT).show();
-        }*/
 
         Map<String, String> userInfo = userInfoDAO.signIn(username, password);
 

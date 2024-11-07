@@ -328,16 +328,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
-    /*public boolean checkUserCredentials(String username, String password) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * FROM users WHERE username = ? AND password = ?";
-        Cursor cursor = db.rawQuery(query, new String[]{username, password});
 
-        boolean isValid = cursor.getCount() > 0;
-        cursor.close();
-        db.close();
-
-        return isValid;
-    }*/
 
 }
