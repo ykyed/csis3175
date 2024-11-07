@@ -18,6 +18,9 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.project.R;
 import com.example.project.model.DBHelper;
+import com.example.project.model.UserInfoDAO;
+
+import java.util.Map;
 
 public class LoginActivity extends ToolbarLogoBaseActivity {
 
@@ -25,6 +28,7 @@ public class LoginActivity extends ToolbarLogoBaseActivity {
     private EditText passwordField;
     private Button loginButton;
     private DBHelper dbHelper;
+    private UserInfoDAO userInfoDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +40,10 @@ public class LoginActivity extends ToolbarLogoBaseActivity {
         View contentView = inflater.inflate(R.layout.activity_login, contentFrame, false);
         contentFrame.addView(contentView);
 
+        userInfoDAO = new UserInfoDAO(this);
 
         // Initialize DBHelper for accessing user data
-        dbHelper = DBHelper.getInstance(this);
+        //dbHelper = DBHelper.getInstance(this);
 
         // Initialize UI components
         usernameField = findViewById(R.id.email_input);
@@ -80,7 +85,7 @@ public class LoginActivity extends ToolbarLogoBaseActivity {
         }
 
         // Authenticate user (you need a method in DBHelper for this)
-        boolean isAuthenticated = dbHelper.checkUserCredentials(username, password);
+        /*boolean isAuthenticated = dbHelper.checkUserCredentials(username, password);
         if (isAuthenticated) {
             Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show();
 
@@ -90,6 +95,19 @@ public class LoginActivity extends ToolbarLogoBaseActivity {
             finish();
         } else {
             Toast.makeText(this, "Invalid username or password", Toast.LENGTH_SHORT).show();
+        }*/
+
+        Map<String, String> userInfo = userInfoDAO.signIn(username, password);
+
+        if (userInfo != null) {
+            String welcomeMessage = "Welcome, " + userInfo.get(getString(R.string.key_first_name));
+            Toast.makeText(this, welcomeMessage, Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        } else {
+            Toast.makeText(this, "Invalid email or password", Toast.LENGTH_SHORT).show();
         }
     }
 }
