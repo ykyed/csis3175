@@ -1,12 +1,15 @@
 package com.example.project.view;
 
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -22,8 +25,12 @@ import java.util.ArrayList;
 
 public class CartActivity extends ToolbarLogoBaseActivity {
 
+    private FrameLayout noItemLayout;
+    private NestedScrollView itemListLayout;
+
     private RecyclerView recyclerView;
     private TextView txtCartTotal, txtTotalPrice;
+    private Button btnCheckout;
     private CartListAdapter cartListAdapter;
     private CartInfoDAO cartInfoDAO;
     private ShoeDAO shoeDAO;
@@ -47,56 +54,84 @@ public class CartActivity extends ToolbarLogoBaseActivity {
     @SuppressLint("DefaultLocale")
     private void initLayout() {
 
-        recyclerView = findViewById(R.id.recyclerView);
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 1);
-        recyclerView.setLayoutManager(layoutManager);
+        noItemLayout = findViewById(R.id.noItemLayout);
+        itemListLayout = findViewById(R.id.itemListLayout);
 
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), LinearLayoutManager.VERTICAL);
-        recyclerView.addItemDecoration(dividerItemDecoration);
+        SharedPreferences sh = getSharedPreferences(getResources().getString(R.string.user_info_shared_preference), MODE_PRIVATE);
+        String userEmail = sh.getString(getResources().getString(R.string.key_email), "");
 
-        ArrayList<CartInfo> cartList = cartInfoDAO.getCartItemsByUser("wooastudio1012@gmail.com");
-        cartListAdapter = new CartListAdapter(this, cartList, shoeDAO, new CartListAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Shoe shoe) {}
+        ArrayList<CartInfo> cartList = cartInfoDAO.getCartItemsByUser(userEmail);
 
-            @Override
-            public void onIncreaseBtnClick(CartInfo cartInfo) {
-                cartInfoDAO.updateItem(cartInfo);
-                totalPrice += shoeDAO.getShoe(cartInfo.getProductCode()).getPrice();
-                changePrice(totalPrice);
-            }
+        if (cartList.isEmpty()) {
+            noItemLayout.setVisibility(View.VISIBLE);
+            itemListLayout.setVisibility(View.INVISIBLE);
+        }
+        else {
+            noItemLayout.setVisibility(View.INVISIBLE);
+            itemListLayout.setVisibility(View.VISIBLE);
 
-            @Override
-            public void onDecreaseBtnClick(CartInfo cartInfo, int position) {
+            recyclerView = findViewById(R.id.recyclerView);
+            RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 1);
+            recyclerView.setLayoutManager(layoutManager);
 
-                totalPrice -= shoeDAO.getShoe(cartInfo.getProductCode()).getPrice();
-                changePrice(totalPrice);
+            DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), LinearLayoutManager.VERTICAL);
+            recyclerView.addItemDecoration(dividerItemDecoration);
 
-                if (cartInfo.getQuantity() == 0) {
-                    cartInfoDAO.deleteItem(cartInfo.getId());
-                    cartList.remove(position);
-                    cartListAdapter.setCartList(cartList);
-                }
-                else {
+            cartListAdapter = new CartListAdapter(this, cartList, shoeDAO, new CartListAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(Shoe shoe) {}
+
+                @Override
+                public void onIncreaseBtnClick(CartInfo cartInfo) {
                     cartInfoDAO.updateItem(cartInfo);
+                    totalPrice += shoeDAO.getShoe(cartInfo.getProductCode()).getPrice();
+                    changePrice(totalPrice);
                 }
+
+                @Override
+                public void onDecreaseBtnClick(CartInfo cartInfo, int position) {
+
+                    totalPrice -= shoeDAO.getShoe(cartInfo.getProductCode()).getPrice();
+                    changePrice(totalPrice);
+
+                    if (cartInfo.getQuantity() == 0) {
+                        cartInfoDAO.deleteItem(cartInfo.getId());
+                        cartList.remove(position);
+                        cartListAdapter.setCartList(cartList);
+                    }
+                    else {
+                        cartInfoDAO.updateItem(cartInfo);
+                    }
+                }
+            });
+            recyclerView.setAdapter(cartListAdapter);
+
+            txtCartTotal = findViewById(R.id.txtCartTotal);
+            txtTotalPrice = findViewById(R.id.txtTotalPrice);
+
+            totalPrice = 0;
+            for (int i = 0; i < cartList.size(); i++) {
+
+                double price = shoeDAO.getShoe(cartList.get(i).getProductCode()).getPrice();
+                int quantity = cartList.get(i).getQuantity();
+                price *= quantity;
+                totalPrice += price;
             }
-        });
-        recyclerView.setAdapter(cartListAdapter);
 
-        txtCartTotal = findViewById(R.id.txtCartTotal);
-        txtTotalPrice = findViewById(R.id.txtTotalPrice);
+            changePrice(totalPrice);
 
-        totalPrice = 0;
-        for (int i = 0; i < cartList.size(); i++) {
+            btnCheckout = findViewById(R.id.btnCheckout);
+            btnCheckout.setOnClickListener(v -> {
+                CheckoutFragment checkoutFragment = new CheckoutFragment(cartList.size(), totalPrice);
 
-            double price = shoeDAO.getShoe(cartList.get(i).getProductCode()).getPrice();
-            int quantity = cartList.get(i).getQuantity();
-            price *= quantity;
-            totalPrice += price;
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.container, checkoutFragment)
+                        .addToBackStack(null)
+                        .commit();
+            });
         }
 
-        changePrice(totalPrice);
     }
 
     private void changePrice(double price) {

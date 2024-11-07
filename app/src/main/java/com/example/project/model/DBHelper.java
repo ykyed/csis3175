@@ -316,7 +316,6 @@ public class DBHelper extends SQLiteOpenHelper {
             } while (shoeCursor.moveToNext());
             shoeCursor.close();
         }
-
     }
 
     public boolean checkUserCredentials(String username, String password) {
@@ -330,5 +329,4 @@ public class DBHelper extends SQLiteOpenHelper {
 
         return isValid;
     }
-
 }
