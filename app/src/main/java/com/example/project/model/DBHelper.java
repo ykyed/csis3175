@@ -231,7 +231,16 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(UserInfo.LAST_NAME_COL, "Do");
 
         db.insert(UserInfo.TABLE_NAME, null, values);
+
+        ContentValues values2 = new ContentValues();
+        values.put(UserInfo.EMAIL_COL, "chelsea123@gmail.com");
+        values.put(UserInfo.PASSWORD_COL, "12345abc");
+        values.put(UserInfo.FIRST_NAME_COL, "Chelsea");
+        values.put(UserInfo.LAST_NAME_COL, "Chiu");
+
+        db.insert(UserInfo.TABLE_NAME, null, values2);
     }
+
 
     private void insertInitCartInfo(SQLiteDatabase db) {
 
@@ -319,7 +328,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
-    public boolean checkUserCredentials(String username, String password) {
+    /*public boolean checkUserCredentials(String username, String password) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM users WHERE username = ? AND password = ?";
         Cursor cursor = db.rawQuery(query, new String[]{username, password});
@@ -329,6 +338,6 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
 
         return isValid;
-    }
+    }*/
 
 }
