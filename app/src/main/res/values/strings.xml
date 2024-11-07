@@ -23,5 +23,19 @@
     <string name="style">Style</string>
     <string name="apply_filter">Apply Filter</string>
     <string name="reset_filter">Reset Filter</string>
+    <string name="sign_in">Sign in</string>
+    <string name="sign_into_your_account_below">Sign into your account below.</string>
+    <string name="don_t_have_an_account">Don’t have an account?</string>
+    <string name="sign_up">Sign up</string>
+    <string name="email_address">Email address</string>
+    <string name="password">Password</string>
+    <string name="my_details">My Details</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="create_account">Create Account</string>
+    <string name="your_cart_is_currently_empty">Your cart is currently empty</string>
+    <string name="estimated_gst_hst">Estimated GST/HST</string>
+    <string name="estimated_pst_rst_qst">Estimated PST/RST/QST</string>
+    <string name="order_total">Order Total</string>
 
 </resources>

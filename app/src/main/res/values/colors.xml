@@ -10,4 +10,6 @@
 
     <color name="activity_background">#22000000</color>
     <color name="line_divide_background">#aaaaaa</color>
+
+    <color name="hint_text_color">#777777</color>
 </resources>

@@ -15,4 +15,7 @@
         <item name="buttonTint">@null</item>
     </style>
 
+    <style name="CustomAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@color/white</item>
+    </style>
 </resources>

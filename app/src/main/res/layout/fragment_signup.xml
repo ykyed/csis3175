@@ -1,0 +1,70 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:background="@color/white"
+    android:layout_margin="5dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/my_details"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"/>
+
+    <EditText
+        android:id="@+id/txtFName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/first_name"
+        android:textColorHint="@color/hint_text_color"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:layout_marginBottom="10dp"/>
+
+    <EditText
+        android:id="@+id/txtLName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/last_name"
+        android:textColorHint="@color/hint_text_color"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:layout_marginBottom="10dp"/>
+
+    <EditText
+        android:id="@+id/txtEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/email_address"
+        android:textColorHint="@color/hint_text_color"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:layout_marginBottom="10dp"/>
+
+    <EditText
+        android:id="@+id/txtPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/password"
+        android:textColorHint="@color/hint_text_color"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:layout_marginBottom="30dp"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/btnApply"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/create_account"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/black"
+        android:textColor="@color/white" />
+
+</LinearLayout>
