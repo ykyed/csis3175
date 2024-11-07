@@ -97,7 +97,8 @@ public class ReviewActivity extends ToolbarLogoBaseActivity {
 
         // Insert review into database
         //dbHelper.addReview(shoeId, rating, headline, comment);
-        reviewInfoDAO.addReview(new ReviewInfo());
+
+        reviewInfoDAO.addReview(new ReviewInfo(productCode, headline, comment, rating));
 
 
         // Show a confirmation message

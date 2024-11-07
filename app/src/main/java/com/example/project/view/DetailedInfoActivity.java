@@ -118,7 +118,7 @@ public class DetailedInfoActivity extends ToolbarBaseActivity {
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
-        displayReviews();
+        //displayReviews();
     }
 
     // review part
@@ -214,8 +214,15 @@ public class DetailedInfoActivity extends ToolbarBaseActivity {
     }
      */
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        displayReviews();
+    }
+
     private void displayReviews() {
 
+        reviewMessage.setText("");
         if (shoeInfo.getReviewCount() > 0) {
             // show review
             reviewMessage.setVisibility(View.GONE);
