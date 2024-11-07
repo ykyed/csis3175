@@ -51,4 +51,17 @@ public class UserInfoDAO {
 
         return info;
     }
+    public boolean doesUserExist(String email) {
+        SQLiteDatabase db = DBHelper.getInstance(context).getReadableDatabase();
+        String query = "SELECT * FROM " + UserInfo.TABLE_NAME + " WHERE email = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{email});
+
+        boolean exists = cursor.getCount() > 0;
+        cursor.close();
+        db.close();
+
+        return exists;
+    }
+
+
 }
