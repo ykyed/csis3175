@@ -28,13 +28,11 @@ import com.example.project.model.ShoeDAO;
 
 public class ReviewActivity extends ToolbarLogoBaseActivity {
 
-    //private ImageView productImage;
     private TextView productName;
     private RatingBar ratingBar;
     private EditText reviewHeadline;
     private EditText reviewComment;
     private Button submitReviewButton;
-    //private DBHelper dbHelper;
     private String productCode;
 
     private ShoeDAO shoeDAO;
@@ -81,7 +79,6 @@ public class ReviewActivity extends ToolbarLogoBaseActivity {
         String headline = reviewHeadline.getText().toString().trim();
         String comment = reviewComment.getText().toString().trim();
 
-        // Validate inputs
         if (rating == 0) {
             Toast.makeText(this, "Please provide a rating.", Toast.LENGTH_SHORT).show();
             return;
@@ -100,11 +97,8 @@ public class ReviewActivity extends ToolbarLogoBaseActivity {
 
         reviewInfoDAO.addReview(new ReviewInfo(productCode, headline, comment, rating));
 
-
-        // Show a confirmation message
         Toast.makeText(this, "Review submitted successfully!", Toast.LENGTH_SHORT).show();
 
-        // Clear input fields
         ratingBar.setRating(0);
         reviewHeadline.setText("");
         reviewComment.setText("");
