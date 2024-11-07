@@ -325,9 +325,5 @@ public class DBHelper extends SQLiteOpenHelper {
             } while (shoeCursor.moveToNext());
             shoeCursor.close();
         }
-
     }
-
-
-
 }

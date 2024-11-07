@@ -2,6 +2,7 @@ package com.example.project.view;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.project.R;
 import com.example.project.model.UserInfoDAO;
@@ -25,6 +25,7 @@ public class LoginActivity extends ToolbarLogoBaseActivity {
     private EditText passwordField;
     private Button loginButton;
     private UserInfoDAO userInfoDAO;
+    private Button signUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,7 @@ public class LoginActivity extends ToolbarLogoBaseActivity {
         passwordField = findViewById(R.id.password_input);
         loginButton = findViewById(R.id.sign_in_button);
         TextView forgotPasswordLink = findViewById(R.id.forgot_password_link);
+        signUp = findViewById(R.id.signUp);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +55,19 @@ public class LoginActivity extends ToolbarLogoBaseActivity {
             @Override
             public void onClick(View v) {
                 openForgotPasswordDialog();
+            }
+        });
+
+        signUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SignupFragment signupFragment = new SignupFragment();
+
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.container, signupFragment)
+                        .addToBackStack(null)
+                        .commit();
             }
         });
     }
@@ -123,8 +138,16 @@ public class LoginActivity extends ToolbarLogoBaseActivity {
             String welcomeMessage = "Welcome, " + userInfo.get(getString(R.string.key_first_name));
             Toast.makeText(this, welcomeMessage, Toast.LENGTH_SHORT).show();
 
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            startActivity(intent);
+            // add to SharedPreferences
+            SharedPreferences sharedPreferences = getSharedPreferences(getResources().getString(R.string.user_info_shared_preference), MODE_PRIVATE);
+            SharedPreferences.Editor myEdit = sharedPreferences.edit();
+            myEdit.putString(getResources().getString(R.string.key_first_name), userInfo.get(getResources().getString(R.string.key_first_name)));
+            myEdit.putString(getResources().getString(R.string.key_email), userInfo.get(getResources().getString(R.string.key_email)));
+            myEdit.apply();
+
+
+            //Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            //startActivity(intent);
             finish();
         } else {
             Toast.makeText(this, "Invalid email or password", Toast.LENGTH_SHORT).show();
