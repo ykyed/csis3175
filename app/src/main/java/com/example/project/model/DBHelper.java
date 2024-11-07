@@ -231,7 +231,16 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(UserInfo.LAST_NAME_COL, "Do");
 
         db.insert(UserInfo.TABLE_NAME, null, values);
+
+        ContentValues values2 = new ContentValues();
+        values.put(UserInfo.EMAIL_COL, "chelsea123@gmail.com");
+        values.put(UserInfo.PASSWORD_COL, "12345abc");
+        values.put(UserInfo.FIRST_NAME_COL, "Chelsea");
+        values.put(UserInfo.LAST_NAME_COL, "Chiu");
+
+        db.insert(UserInfo.TABLE_NAME, null, values2);
     }
+
 
     private void insertInitCartInfo(SQLiteDatabase db) {
 
@@ -316,5 +325,9 @@ public class DBHelper extends SQLiteOpenHelper {
             } while (shoeCursor.moveToNext());
             shoeCursor.close();
         }
+
     }
+
+
+
 }
