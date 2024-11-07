@@ -1,5 +1,6 @@
 package com.example.project.view;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,17 +8,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.project.R;
-import com.example.project.model.DBHelper;
 import com.example.project.model.UserInfoDAO;
 
 import java.util.Map;
@@ -27,13 +24,11 @@ public class LoginActivity extends ToolbarLogoBaseActivity {
     private EditText usernameField;
     private EditText passwordField;
     private Button loginButton;
-    private DBHelper dbHelper;
     private UserInfoDAO userInfoDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
         FrameLayout contentFrame = findViewById(R.id.contentFrame);
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -42,21 +37,62 @@ public class LoginActivity extends ToolbarLogoBaseActivity {
 
         userInfoDAO = new UserInfoDAO(this);
 
-        // Initialize DBHelper for accessing user data
-        //dbHelper = DBHelper.getInstance(this);
-
-        // Initialize UI components
         usernameField = findViewById(R.id.email_input);
         passwordField = findViewById(R.id.password_input);
         loginButton = findViewById(R.id.sign_in_button);
+        TextView forgotPasswordLink = findViewById(R.id.forgot_password_link);
 
-        // Set login button click listener
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 attemptLogin();
             }
         });
+
+        forgotPasswordLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openForgotPasswordDialog();
+            }
+        });
+    }
+
+    private void openForgotPasswordDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Reset Password");
+
+        final EditText input = new EditText(this);
+        input.setHint("Enter your email");
+        builder.setView(input);
+
+        builder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String email = input.getText().toString().trim();
+                if (!email.isEmpty()) {
+                    handlePasswordReset(email);
+                } else {
+                    Toast.makeText(LoginActivity.this, "Please enter your email", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
+    }
+
+    private void handlePasswordReset(String email) {
+        if (userInfoDAO.doesUserExist(email)) {
+            // Provide further instructions or send a password reset email
+            Toast.makeText(this, "Password reset instructions sent to " + email, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "No account found with that email", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -65,13 +101,10 @@ public class LoginActivity extends ToolbarLogoBaseActivity {
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 
-
     private void attemptLogin() {
-        // Get input from fields
         String username = usernameField.getText().toString().trim();
         String password = passwordField.getText().toString().trim();
 
-        // Check if inputs are empty
         if (username.isEmpty()) {
             usernameField.setError("Username is required");
             usernameField.requestFocus();
@@ -83,7 +116,6 @@ public class LoginActivity extends ToolbarLogoBaseActivity {
             passwordField.requestFocus();
             return;
         }
-
 
         Map<String, String> userInfo = userInfoDAO.signIn(username, password);
 
