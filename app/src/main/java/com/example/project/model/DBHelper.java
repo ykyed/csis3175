@@ -1,5 +1,7 @@
 package com.example.project.model;
 
+import static com.example.project.util.HashUtils.hashPassword;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -226,7 +228,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put(UserInfo.EMAIL_COL, "wooastudio1012@gmail.com");
-        values.put(UserInfo.PASSWORD_COL, "Qwer1234");
+        values.put(UserInfo.PASSWORD_COL, hashPassword("Qwer1234"));
         values.put(UserInfo.FIRST_NAME_COL, "Dan");
         values.put(UserInfo.LAST_NAME_COL, "Do");
 
@@ -234,7 +236,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         ContentValues values2 = new ContentValues();
         values.put(UserInfo.EMAIL_COL, "chelsea123@gmail.com");
-        values.put(UserInfo.PASSWORD_COL, "12345abc");
+        values.put(UserInfo.PASSWORD_COL, hashPassword("12345abc"));
         values.put(UserInfo.FIRST_NAME_COL, "Chelsea");
         values.put(UserInfo.LAST_NAME_COL, "Chiu");
 
