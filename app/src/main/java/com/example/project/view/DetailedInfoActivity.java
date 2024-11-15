@@ -1,8 +1,6 @@
 package com.example.project.view;
 
 import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +20,8 @@ import com.example.project.model.ReviewInfo;
 import com.example.project.model.ReviewInfoDAO;
 import com.example.project.model.Shoe;
 import com.example.project.model.ShoeDAO;
+import com.example.project.model.SizeInfo;
+import com.example.project.model.SizeInfoDAO;
 
 import java.util.ArrayList;
 
@@ -33,8 +33,6 @@ public class DetailedInfoActivity extends ToolbarBaseActivity {
     private ImageView imageView2;
     private Button btnCart = null;
     private GridLayout sizeButtonGrid;
-    private String[] sizes = {"US 6", "US 6.5", "US 7", "US 7.5", "US 8", "US 8.5", "US 9"
-            , "US 9.5", "US 10", "US 10.5", "US 11", "US 11.5", "US 12", "US 12.5", "US 13"};
     private Button selectedButton = null;
 
     //review part
@@ -46,6 +44,9 @@ public class DetailedInfoActivity extends ToolbarBaseActivity {
     private ReviewInfoDAO reviewInfoDAO;
     private String productCode;
     private Shoe shoeInfo;
+
+    private SizeInfoDAO sizeInfoDAO;
+    private ArrayList<SizeInfo> sizeInfos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +63,10 @@ public class DetailedInfoActivity extends ToolbarBaseActivity {
         productCode = getIntent().getStringExtra(getString(R.string.key_product_code));
         shoeInfo = shoeDAO.getShoe(productCode);
 
+        sizeInfoDAO = new SizeInfoDAO(this);
+
+        sizeInfos = (ArrayList<SizeInfo>)sizeInfoDAO.getSizesByProductCode(productCode);
+
         initLayout();
     }
 
@@ -75,7 +80,7 @@ public class DetailedInfoActivity extends ToolbarBaseActivity {
         imageView2 = findViewById(R.id.imageView2);
 
         btnCart.setEnabled(false);
-        createSizeButtons(sizes);
+        createSizeButtons();
 
         reviewListContainer = findViewById(R.id.reviewListContainer);
         reviewMessage = findViewById(R.id.reviewMessage);
@@ -88,7 +93,6 @@ public class DetailedInfoActivity extends ToolbarBaseActivity {
         Glide.with(this)
                 .load(imageUrl)
                 .into(imageView2);
-        //loadShoeDataAndReviews();;
 
         btnReview = findViewById(R.id.btnReview);
         btnReview.setOnClickListener(new View.OnClickListener() {
@@ -141,29 +145,33 @@ public class DetailedInfoActivity extends ToolbarBaseActivity {
     }
 
     // button
-    private void createSizeButtons(String[] sizes) {
-        int totalButtons = sizes.length;
+    private void createSizeButtons() {
+        int totalButtons = sizeInfos.size();
         for (int i = 0; i < totalButtons; i++) {
-            Button sizeButton = createButton(sizes[i]);
+            Button sizeButton = createButton( "US " + sizeInfos.get(i).getSize(), sizeInfos.get(i).getQuantity());
             sizeButtonGrid.addView(sizeButton);
         }
     }
 
-    private ColorStateList orgSizeBtnColorStateList;
+//    private ColorStateList orgSizeBtnColorStateList;
 
-    private Button createButton(String size) {
+    private Button createButton(String size, int quantity) {
+
         Button sizeButton = new Button(this);
         sizeButton.setText(size);
+        if(quantity == 0) {
+            sizeButton.setEnabled(false);
+        }
 
         GridLayout.LayoutParams params = new GridLayout.LayoutParams();
         params.width = 180;
         params.height = 100;
+        //params.setMargins(10,10,10,10);
         sizeButton.setLayoutParams(params);
 
         sizeButton.setPadding(10, 5, 10, 5);
         sizeButton.setTextSize(13);
-        sizeButton.setBackgroundResource(android.R.drawable.btn_default);
-        orgSizeBtnColorStateList = sizeButton.getBackgroundTintList();
+        sizeButton.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.size_btn_background));
 
         sizeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -177,31 +185,16 @@ public class DetailedInfoActivity extends ToolbarBaseActivity {
 
     private void onSizeButtonClicked(Button clickedButton) {
         if (selectedButton != null) {
-            selectedButton.setEnabled(true);
-            //selectedButton.setBackgroundResource(android.R.drawable.btn_default);
-            //selectedButton.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorPrimary));
-            selectedButton.setBackgroundTintList(orgSizeBtnColorStateList);
+            selectedButton.setTextColor(ContextCompat.getColorStateList(this, R.color.black));
+            selectedButton.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.size_btn_background));
         }
-        //clickedButton.setEnabled(false);
-        clickedButton.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
+        clickedButton.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.black));
+        clickedButton.setTextColor(ContextCompat.getColorStateList(this, R.color.white));
         selectedButton = clickedButton;
 
         Button addToCartButton = findViewById(R.id.btnCart);
         addToCartButton.setEnabled(true);
         addToCartButton.setBackgroundColor(ContextCompat.getColor(this, R.color.black));
-    }
-
-    private void updateSelectedButton(Button clickedButton) {
-        if (selectedButton != null) {
-            selectedButton.setBackgroundColor(Color.TRANSPARENT);  // Reset color
-        }
-
-        clickedButton.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary));
-        selectedButton = clickedButton;
-    }
-
-    private void enableAddToCartButton(boolean isEnabled) {
-        btnCart.setEnabled(isEnabled);
     }
 
     @Override
