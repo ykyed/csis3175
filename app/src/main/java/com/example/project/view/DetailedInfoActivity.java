@@ -1,6 +1,7 @@
 package com.example.project.view;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,8 @@ import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 import com.example.project.R;
+import com.example.project.model.CartInfo;
+import com.example.project.model.CartInfoDAO;
 import com.example.project.model.ReviewInfo;
 import com.example.project.model.ReviewInfoDAO;
 import com.example.project.model.Shoe;
@@ -40,6 +43,8 @@ public class DetailedInfoActivity extends ToolbarBaseActivity {
     private TextView reviewMessage;
     private Button btnReview;
 
+    private CartInfoDAO cartInfoDAO;
+
     private ShoeDAO shoeDAO;
     private ReviewInfoDAO reviewInfoDAO;
     private String productCode;
@@ -56,6 +61,8 @@ public class DetailedInfoActivity extends ToolbarBaseActivity {
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View contentView = inflater.inflate(R.layout.activity_detailed_info, contentFrame, false);
         contentFrame.addView(contentView);
+
+        cartInfoDAO = new CartInfoDAO(this);
 
         shoeDAO = new ShoeDAO(this);
         reviewInfoDAO = new ReviewInfoDAO(this);
@@ -75,11 +82,38 @@ public class DetailedInfoActivity extends ToolbarBaseActivity {
         ratingBar = findViewById(R.id.ratingBar);
         txtProductName = findViewById(R.id.txtProductName);
         txtProductPrice = findViewById(R.id.txtProductPrice);
-        btnCart = findViewById(R.id.btnCart);
-        sizeButtonGrid = findViewById(R.id.sizeButtonGrid);
         imageView2 = findViewById(R.id.imageView2);
 
+        btnCart = findViewById(R.id.btnCart);
         btnCart.setEnabled(false);
+
+        SharedPreferences sh = getSharedPreferences(getResources().getString(R.string.user_info_shared_preference), MODE_PRIVATE);
+        String userEmail = sh.getString(getResources().getString(R.string.key_email), "");
+
+        String userName = sh.getString(getResources().getString(R.string.key_first_name), "");
+
+        btnCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!userEmail.isEmpty()) {
+                    CartInfo cartInfo = new CartInfo();
+                    cartInfo.setProductCode(shoeInfo.getProductCode());
+                    cartInfo.setEmail(userEmail);
+                    cartInfo.setSize(Double.parseDouble(selectedButton.getText().toString().replace("US ", "")));
+                    cartInfo.setQuantity(1);
+
+                    cartInfoDAO.addItem(cartInfo);
+
+                    updateToolbar(userName, userEmail);
+
+                } else {
+                    Intent intent = new Intent(DetailedInfoActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
+
+        sizeButtonGrid = findViewById(R.id.sizeButtonGrid);
         createSizeButtons();
 
         reviewListContainer = findViewById(R.id.reviewListContainer);
@@ -115,7 +149,6 @@ public class DetailedInfoActivity extends ToolbarBaseActivity {
     }
 
     private void displayReviews() {
-
         if (shoeInfo.getReviewCount() > 0) {
             // show review
             reviewMessage.setVisibility(View.GONE);
@@ -153,8 +186,6 @@ public class DetailedInfoActivity extends ToolbarBaseActivity {
         }
     }
 
-//    private ColorStateList orgSizeBtnColorStateList;
-
     private Button createButton(String size, int quantity) {
 
         Button sizeButton = new Button(this);
@@ -166,7 +197,6 @@ public class DetailedInfoActivity extends ToolbarBaseActivity {
         GridLayout.LayoutParams params = new GridLayout.LayoutParams();
         params.width = 180;
         params.height = 100;
-        //params.setMargins(10,10,10,10);
         sizeButton.setLayoutParams(params);
 
         sizeButton.setPadding(10, 5, 10, 5);
