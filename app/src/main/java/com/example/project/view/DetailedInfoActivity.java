@@ -149,6 +149,7 @@ public class DetailedInfoActivity extends ToolbarBaseActivity {
     }
 
     private void displayReviews() {
+        reviewListContainer.removeAllViews();
         if (shoeInfo.getReviewCount() > 0) {
             // show review
             reviewMessage.setVisibility(View.GONE);
@@ -165,7 +166,6 @@ public class DetailedInfoActivity extends ToolbarBaseActivity {
     }
 
     private void addReviewToView(String title, String comment, double rating) {
-        reviewListContainer.removeAllViews();
 
         TextView reviewView = new TextView(this);
         reviewView.setText("Title: " + title + "\nRating: " + rating + "\nComment: " + comment);
