@@ -110,6 +110,14 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
+            <Button
+                android:id="@+id/btnToggle"
+                android:text="More"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:backgroundTint="@color/black"/>
+
             <LinearLayout
                 android:id="@+id/reviewListContainer"
                 android:layout_width="match_parent"

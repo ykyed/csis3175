@@ -14,6 +14,8 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.project.R;
@@ -39,8 +41,12 @@ public class DetailedInfoActivity extends ToolbarBaseActivity {
     private Button selectedButton = null;
 
     //review part
+    private Button btnToggle;
+    private boolean areReviewsVisible = false;
     private LinearLayout reviewListContainer;
     private TextView reviewMessage;
+
+
     private Button btnReview;
 
     private CartInfoDAO cartInfoDAO;
@@ -116,8 +122,20 @@ public class DetailedInfoActivity extends ToolbarBaseActivity {
         sizeButtonGrid = findViewById(R.id.sizeButtonGrid);
         createSizeButtons();
 
+        btnToggle = findViewById(R.id.btnToggle);
         reviewListContainer = findViewById(R.id.reviewListContainer);
         reviewMessage = findViewById(R.id.reviewMessage);
+        reviewListContainer.setVisibility(View.GONE);
+        btnToggle.setText("More");
+
+        btnToggle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toggleReviewsVisibility();
+            }
+        });
+//        recyclerView = findViewById(R.id.recycler_view);
+//        toggleButton = findViewById(R.id.btn_toggle_reviews);
 
         txtStarRate.setText(String.valueOf(shoeInfo.getRating()));
         txtProductName.setText(shoeInfo.getTitle());
@@ -148,19 +166,32 @@ public class DetailedInfoActivity extends ToolbarBaseActivity {
         displayReviews();
     }
 
+    private void toggleReviewsVisibility() {
+        if (areReviewsVisible) {
+            // Hide reviews
+            reviewListContainer.setVisibility(View.GONE);
+            btnToggle.setText("More"); // Change button text to "More"
+        } else {
+            reviewListContainer.setVisibility(View.VISIBLE);
+            btnToggle.setText("Less"); // Change button text to "Less"
+        }
+        areReviewsVisible = !areReviewsVisible;
+    }
+
     private void displayReviews() {
         reviewListContainer.removeAllViews();
         if (shoeInfo.getReviewCount() > 0) {
-            // show review
             reviewMessage.setVisibility(View.GONE);
+
+            // Show reviews
             ArrayList<ReviewInfo> reviews = reviewInfoDAO.getReviewsByPrductCode(productCode);
             if (reviews != null) {
-                for(int i = 0; i < reviews.size(); i++) {
-                    addReviewToView(reviews.get(i).getTitle(), reviews.get(i).getComment(), reviews.get(i).getRating()) ;
+                for (int i = 0; i < reviews.size(); i++) {
+                    addReviewToView(reviews.get(i).getTitle(), reviews.get(i).getComment(), reviews.get(i).getRating());
                 }
             }
-        }
-        else {
+        } else {
+            // If no reviews, show the "No reviews yet" message ?? why it's not shown
             reviewMessage.setVisibility(View.VISIBLE);
         }
     }
