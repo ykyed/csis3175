@@ -1,13 +1,13 @@
 package com.example.project.model;
 
+import static com.example.project.util.HashUtils.hashPassword;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-
-import com.example.project.util.HashUtils;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -83,6 +83,14 @@ public class DBHelper extends SQLiteOpenHelper {
 
         db.execSQL(createCartInfoTable);
 
+        String createSizeInfoTable = "CREATE TABLE " + SizeInfo.TABLE_NAME + " ("
+                + SizeInfo.ID_COL + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + SizeInfo.PRODUCT_CODE_COL + " TEXT, "
+                + SizeInfo.SIZE_COL + " TEXT, "
+                + SizeInfo.QUANTITY_COL + " TEXT)";
+
+        db.execSQL(createSizeInfoTable);
+
         insertInitReviewData(db);
         insertInitShoeData(db);
         insertInitUserInfo(db);
@@ -98,6 +106,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + Shoe.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + CartInfo.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + UserInfo.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + SizeInfo.TABLE_NAME);
         onCreate(db);
     }
 
@@ -228,7 +237,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put(UserInfo.EMAIL_COL, "wooastudio1012@gmail.com");
-        values.put(UserInfo.PASSWORD_COL, HashUtils.hashPassword("Qwer1234"));
+        values.put(UserInfo.PASSWORD_COL, hashPassword("Qwer1234"));
         values.put(UserInfo.FIRST_NAME_COL, "Dan");
         values.put(UserInfo.LAST_NAME_COL, "Do");
 
@@ -236,7 +245,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         ContentValues values2 = new ContentValues();
         values.put(UserInfo.EMAIL_COL, "chelsea123@gmail.com");
-        values.put(UserInfo.PASSWORD_COL, HashUtils.hashPassword("12345abc"));
+        values.put(UserInfo.PASSWORD_COL, hashPassword("12345abc"));
         values.put(UserInfo.FIRST_NAME_COL, "Chelsea");
         values.put(UserInfo.LAST_NAME_COL, "Chiu");
 
