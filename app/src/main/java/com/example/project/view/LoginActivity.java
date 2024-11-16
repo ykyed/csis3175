@@ -41,20 +41,12 @@ public class LoginActivity extends ToolbarLogoBaseActivity {
         usernameField = findViewById(R.id.email_input);
         passwordField = findViewById(R.id.password_input);
         loginButton = findViewById(R.id.sign_in_button);
-        TextView forgotPasswordLink = findViewById(R.id.forgot_password_link);
         signUp = findViewById(R.id.signUp);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 attemptLogin();
-            }
-        });
-
-        forgotPasswordLink.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openForgotPasswordDialog();
             }
         });
 
