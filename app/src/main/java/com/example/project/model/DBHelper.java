@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.example.project.util.HashUtils;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -18,7 +20,7 @@ import java.util.Random;
 public class DBHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "goshoes.db";
-    private static final int DB_VERSION = 19;
+    private static final int DB_VERSION = 1;
 
     private static DBHelper instance;
     private final WeakReference<Context> context;
@@ -226,7 +228,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put(UserInfo.EMAIL_COL, "wooastudio1012@gmail.com");
-        values.put(UserInfo.PASSWORD_COL, "Qwer1234");
+        values.put(UserInfo.PASSWORD_COL, HashUtils.hashPassword("Qwer1234"));
         values.put(UserInfo.FIRST_NAME_COL, "Dan");
         values.put(UserInfo.LAST_NAME_COL, "Do");
 
@@ -234,7 +236,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         ContentValues values2 = new ContentValues();
         values.put(UserInfo.EMAIL_COL, "chelsea123@gmail.com");
-        values.put(UserInfo.PASSWORD_COL, "12345abc");
+        values.put(UserInfo.PASSWORD_COL, HashUtils.hashPassword("12345abc"));
         values.put(UserInfo.FIRST_NAME_COL, "Chelsea");
         values.put(UserInfo.LAST_NAME_COL, "Chiu");
 

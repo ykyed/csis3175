@@ -252,19 +252,21 @@
           "//jdsports.ca/cdn/shop/files/1201A256-118_asics_gel_1130_white__cloud_grey_5_671x.jpg?v=1707806747"        ]
       },
       {
-        "productCode": "HQ6316",
-        "title": "adidas Originals Yeezy Boost 350 V2 / Bone",
-        "price": 310,
-        "rating": 5.0,
-        "reviewCount": 740,
+        "productCode": "100201247",
+        "title": "Reebok Court Phase White / Green - Orange",
+        "price": 110,
+        "rating": 4.5,
+        "reviewCount": 4,
         "color": "White",
         "style": "Man",
-        "brand": "Adidas",
-        "thumbnail": "https://cdn.shopify.com/s/files/1/0577/7784/8502/files/Layer01_232x.jpg?v=1722968685",
+        "brand": "Reebok",
+        "thumbnail": "https://cdn.shopify.com/s/files/1/0577/7784/8502/files/100201247_reebok_court_phase_white__green___orange_4_232x.jpg?v=1726822839",
         "images": [
-          "https://jdsports.ca/cdn/shop/files/Layer01_671x.jpg?v=1722968685",
-          "https://jdsports.ca/cdn/shop/files/Layer02_671x.jpg?v=1722968685",
-          "https://jdsports.ca/cdn/shop/files/Layer03_671x.jpg?v=1722968685"
+          "https://jdsports.ca/cdn/shop/files/100201247_reebok_court_phase_white__green___orange_4_671x.jpg?v=1726822839",
+          "https://jdsports.ca/cdn/shop/files/100201247_reebok_court_phase_white__green___orange_2_671x.jpg?v=1726822839",
+          "https://jdsports.ca/cdn/shop/files/100201247_reebok_court_phase_white__green___orange_3_671x.jpg?v=1726822839",
+          "https://jdsports.ca/cdn/shop/files/100201247_reebok_court_phase_white__green___orange_6_671x.jpg?v=1726822839",
+          "https://jdsports.ca/cdn/shop/files/100201247_reebok_court_phase_white__green___orange_1_671x.jpg?v=1726822839"
         ]
       },
       {
@@ -466,6 +468,24 @@
           "https://jdsports.ca/cdn/shop/files/FB9109-110_nike_dunk_low_white__viotech___white_3_671x.jpg?v=1723720864",
           "https://jdsports.ca/cdn/shop/files/FB9109-110_nike_dunk_low_white__viotech___white_4_671x.jpg?v=1723720864" ,
           "https://jdsports.ca/cdn/shop/files/FB9109-110_nike_dunk_low_white__viotech___white_5_671x.jpg?v=1723720864"
+        ]
+      },
+      {
+        "productCode": "JI1024",
+        "title": "adidas Gazelle Green / White - Black",
+        "price": 130,
+        "rating": 0,
+        "reviewCount": 0,
+        "color": "Green",
+        "style": "Man",
+        "brand": "Adidas",
+        "thumbnail": "https://cdn.shopify.com/s/files/1/0577/7784/8502/files/JI1024_adidas_jd__gazelle_green__white___black_1_232x.jpg?v=1726735910",
+        "images": [
+          "https://jdsports.ca/cdn/shop/files/JI1024_adidas_jd__gazelle_green__white___black_1_671x.jpg?v=1726735910",
+          "https://jdsports.ca/cdn/shop/files/JI1024_adidas_jd__gazelle_green__white___black_5_671x.jpg?v=1726735910",
+          "https://jdsports.ca/cdn/shop/files/JI1024_adidas_jd__gazelle_green__white___black_6_671x.jpg?v=1726735911",
+          "https://jdsports.ca/cdn/shop/files/JI1024_adidas_jd__gazelle_green__white___black_3_671x.jpg?v=1726735911" ,
+          "https://jdsports.ca/cdn/shop/files/JI1024_adidas_jd__gazelle_green__white___black_4_671x.jpg?v=1726735911"
         ]
       }
     ]
