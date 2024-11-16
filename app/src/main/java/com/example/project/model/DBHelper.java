@@ -305,7 +305,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private void insertInitSizeInfo(SQLiteDatabase db) {
 
-        double[] sizeArr = {3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13 };
+        double[] sizeArr = {6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13 };
         Random rand = new Random();
 
         Cursor shoeCursor = db.query(Shoe.TABLE_NAME, new String[]{Shoe.PRODUCT_CODE_COL}, null, null, null, null, null);
