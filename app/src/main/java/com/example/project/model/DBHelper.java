@@ -20,7 +20,7 @@ import java.util.Random;
 public class DBHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "goshoes.db";
-    private static final int DB_VERSION = 19;
+    private static final int DB_VERSION = 1;
 
     private static DBHelper instance;
     private final WeakReference<Context> context;
@@ -83,6 +83,14 @@ public class DBHelper extends SQLiteOpenHelper {
 
         db.execSQL(createCartInfoTable);
 
+        String createSizeInfoTable = "CREATE TABLE " + SizeInfo.TABLE_NAME + " ("
+                + SizeInfo.ID_COL + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + SizeInfo.PRODUCT_CODE_COL + " TEXT, "
+                + SizeInfo.SIZE_COL + " TEXT, "
+                + SizeInfo.QUANTITY_COL + " TEXT)";
+
+        db.execSQL(createSizeInfoTable);
+
         insertInitReviewData(db);
         insertInitShoeData(db);
         insertInitUserInfo(db);
@@ -98,6 +106,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + Shoe.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + CartInfo.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + UserInfo.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + SizeInfo.TABLE_NAME);
         onCreate(db);
     }
 
@@ -305,7 +314,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private void insertInitSizeInfo(SQLiteDatabase db) {
 
-        double[] sizeArr = {3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13 };
+        double[] sizeArr = {6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13 };
         Random rand = new Random();
 
         Cursor shoeCursor = db.query(Shoe.TABLE_NAME, new String[]{Shoe.PRODUCT_CODE_COL}, null, null, null, null, null);

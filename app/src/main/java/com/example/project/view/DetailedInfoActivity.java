@@ -1,8 +1,7 @@
 package com.example.project.view;
 
 import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,13 +14,19 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.project.R;
+import com.example.project.model.CartInfo;
+import com.example.project.model.CartInfoDAO;
 import com.example.project.model.ReviewInfo;
 import com.example.project.model.ReviewInfoDAO;
 import com.example.project.model.Shoe;
 import com.example.project.model.ShoeDAO;
+import com.example.project.model.SizeInfo;
+import com.example.project.model.SizeInfoDAO;
 
 import java.util.ArrayList;
 
@@ -33,19 +38,26 @@ public class DetailedInfoActivity extends ToolbarBaseActivity {
     private ImageView imageView2;
     private Button btnCart = null;
     private GridLayout sizeButtonGrid;
-    private String[] sizes = {"US 6", "US 6.5", "US 7", "US 7.5", "US 8", "US 8.5", "US 9"
-            , "US 9.5", "US 10", "US 10.5", "US 11", "US 11.5", "US 12", "US 12.5", "US 13"};
     private Button selectedButton = null;
 
     //review part
+    private Button btnToggle;
+    private boolean areReviewsVisible = false;
     private LinearLayout reviewListContainer;
     private TextView reviewMessage;
+
+
     private Button btnReview;
+
+    private CartInfoDAO cartInfoDAO;
 
     private ShoeDAO shoeDAO;
     private ReviewInfoDAO reviewInfoDAO;
     private String productCode;
     private Shoe shoeInfo;
+
+    private SizeInfoDAO sizeInfoDAO;
+    private ArrayList<SizeInfo> sizeInfos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,11 +68,17 @@ public class DetailedInfoActivity extends ToolbarBaseActivity {
         View contentView = inflater.inflate(R.layout.activity_detailed_info, contentFrame, false);
         contentFrame.addView(contentView);
 
+        cartInfoDAO = new CartInfoDAO(this);
+
         shoeDAO = new ShoeDAO(this);
         reviewInfoDAO = new ReviewInfoDAO(this);
 
         productCode = getIntent().getStringExtra(getString(R.string.key_product_code));
         shoeInfo = shoeDAO.getShoe(productCode);
+
+        sizeInfoDAO = new SizeInfoDAO(this);
+
+        sizeInfos = (ArrayList<SizeInfo>)sizeInfoDAO.getSizesByProductCode(productCode);
 
         initLayout();
     }
@@ -70,15 +88,54 @@ public class DetailedInfoActivity extends ToolbarBaseActivity {
         ratingBar = findViewById(R.id.ratingBar);
         txtProductName = findViewById(R.id.txtProductName);
         txtProductPrice = findViewById(R.id.txtProductPrice);
-        btnCart = findViewById(R.id.btnCart);
-        sizeButtonGrid = findViewById(R.id.sizeButtonGrid);
         imageView2 = findViewById(R.id.imageView2);
 
+        btnCart = findViewById(R.id.btnCart);
         btnCart.setEnabled(false);
-        createSizeButtons(sizes);
 
+        SharedPreferences sh = getSharedPreferences(getResources().getString(R.string.user_info_shared_preference), MODE_PRIVATE);
+        String userEmail = sh.getString(getResources().getString(R.string.key_email), "");
+
+        String userName = sh.getString(getResources().getString(R.string.key_first_name), "");
+
+        btnCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!userEmail.isEmpty()) {
+                    CartInfo cartInfo = new CartInfo();
+                    cartInfo.setProductCode(shoeInfo.getProductCode());
+                    cartInfo.setEmail(userEmail);
+                    cartInfo.setSize(Double.parseDouble(selectedButton.getText().toString().replace("US ", "")));
+                    cartInfo.setQuantity(1);
+
+                    cartInfoDAO.addItem(cartInfo);
+
+                    updateToolbar(userName, userEmail);
+
+                } else {
+                    Intent intent = new Intent(DetailedInfoActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
+
+        sizeButtonGrid = findViewById(R.id.sizeButtonGrid);
+        createSizeButtons();
+
+        btnToggle = findViewById(R.id.btnToggle);
         reviewListContainer = findViewById(R.id.reviewListContainer);
         reviewMessage = findViewById(R.id.reviewMessage);
+        reviewListContainer.setVisibility(View.GONE);
+        btnToggle.setText("More");
+
+        btnToggle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toggleReviewsVisibility();
+            }
+        });
+//        recyclerView = findViewById(R.id.recycler_view);
+//        toggleButton = findViewById(R.id.btn_toggle_reviews);
 
         txtStarRate.setText(String.valueOf(shoeInfo.getRating()));
         txtProductName.setText(shoeInfo.getTitle());
@@ -88,7 +145,6 @@ public class DetailedInfoActivity extends ToolbarBaseActivity {
         Glide.with(this)
                 .load(imageUrl)
                 .into(imageView2);
-        //loadShoeDataAndReviews();;
 
         btnReview = findViewById(R.id.btnReview);
         btnReview.setOnClickListener(new View.OnClickListener() {
@@ -110,25 +166,37 @@ public class DetailedInfoActivity extends ToolbarBaseActivity {
         displayReviews();
     }
 
-    private void displayReviews() {
+    private void toggleReviewsVisibility() {
+        if (areReviewsVisible) {
+            // Hide reviews
+            reviewListContainer.setVisibility(View.GONE);
+            btnToggle.setText("More"); // Change button text to "More"
+        } else {
+            reviewListContainer.setVisibility(View.VISIBLE);
+            btnToggle.setText("Less"); // Change button text to "Less"
+        }
+        areReviewsVisible = !areReviewsVisible;
+    }
 
+    private void displayReviews() {
+        reviewListContainer.removeAllViews();
         if (shoeInfo.getReviewCount() > 0) {
-            // show review
             reviewMessage.setVisibility(View.GONE);
+
+            // Show reviews
             ArrayList<ReviewInfo> reviews = reviewInfoDAO.getReviewsByPrductCode(productCode);
             if (reviews != null) {
-                for(int i = 0; i < reviews.size(); i++) {
-                    addReviewToView(reviews.get(i).getTitle(), reviews.get(i).getComment(), reviews.get(i).getRating()) ;
+                for (int i = 0; i < reviews.size(); i++) {
+                    addReviewToView(reviews.get(i).getTitle(), reviews.get(i).getComment(), reviews.get(i).getRating());
                 }
             }
-        }
-        else {
+        } else {
+            // If no reviews, show the "No reviews yet" message ?? why it's not shown
             reviewMessage.setVisibility(View.VISIBLE);
         }
     }
 
     private void addReviewToView(String title, String comment, double rating) {
-        reviewListContainer.removeAllViews();
 
         TextView reviewView = new TextView(this);
         reviewView.setText("Title: " + title + "\nRating: " + rating + "\nComment: " + comment);
@@ -141,19 +209,21 @@ public class DetailedInfoActivity extends ToolbarBaseActivity {
     }
 
     // button
-    private void createSizeButtons(String[] sizes) {
-        int totalButtons = sizes.length;
+    private void createSizeButtons() {
+        int totalButtons = sizeInfos.size();
         for (int i = 0; i < totalButtons; i++) {
-            Button sizeButton = createButton(sizes[i]);
+            Button sizeButton = createButton( "US " + sizeInfos.get(i).getSize(), sizeInfos.get(i).getQuantity());
             sizeButtonGrid.addView(sizeButton);
         }
     }
 
-    private ColorStateList orgSizeBtnColorStateList;
+    private Button createButton(String size, int quantity) {
 
-    private Button createButton(String size) {
         Button sizeButton = new Button(this);
         sizeButton.setText(size);
+        if(quantity == 0) {
+            sizeButton.setEnabled(false);
+        }
 
         GridLayout.LayoutParams params = new GridLayout.LayoutParams();
         params.width = 180;
@@ -162,8 +232,7 @@ public class DetailedInfoActivity extends ToolbarBaseActivity {
 
         sizeButton.setPadding(10, 5, 10, 5);
         sizeButton.setTextSize(13);
-        sizeButton.setBackgroundResource(android.R.drawable.btn_default);
-        orgSizeBtnColorStateList = sizeButton.getBackgroundTintList();
+        sizeButton.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.size_btn_background));
 
         sizeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -177,31 +246,16 @@ public class DetailedInfoActivity extends ToolbarBaseActivity {
 
     private void onSizeButtonClicked(Button clickedButton) {
         if (selectedButton != null) {
-            selectedButton.setEnabled(true);
-            //selectedButton.setBackgroundResource(android.R.drawable.btn_default);
-            //selectedButton.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorPrimary));
-            selectedButton.setBackgroundTintList(orgSizeBtnColorStateList);
+            selectedButton.setTextColor(ContextCompat.getColorStateList(this, R.color.black));
+            selectedButton.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.size_btn_background));
         }
-        //clickedButton.setEnabled(false);
-        clickedButton.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
+        clickedButton.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.black));
+        clickedButton.setTextColor(ContextCompat.getColorStateList(this, R.color.white));
         selectedButton = clickedButton;
 
         Button addToCartButton = findViewById(R.id.btnCart);
         addToCartButton.setEnabled(true);
         addToCartButton.setBackgroundColor(ContextCompat.getColor(this, R.color.black));
-    }
-
-    private void updateSelectedButton(Button clickedButton) {
-        if (selectedButton != null) {
-            selectedButton.setBackgroundColor(Color.TRANSPARENT);  // Reset color
-        }
-
-        clickedButton.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary));
-        selectedButton = clickedButton;
-    }
-
-    private void enableAddToCartButton(boolean isEnabled) {
-        btnCart.setEnabled(isEnabled);
     }
 
     @Override
