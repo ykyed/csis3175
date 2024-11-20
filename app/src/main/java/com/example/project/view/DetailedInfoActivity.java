@@ -174,9 +174,11 @@ public class DetailedInfoActivity extends ToolbarBaseActivity {
     private void toggleReviewsVisibility() {
         if (areReviewsVisible) {
             // Hide reviews
+            btnReview.setVisibility(View.INVISIBLE);
             reviewListContainer.setVisibility(View.GONE);
             btnToggle.setImageResource(R.drawable.more);
         } else {
+            btnReview.setVisibility(View.VISIBLE);
             reviewListContainer.setVisibility(View.VISIBLE);
             btnToggle.setImageResource(R.drawable.less);
         }

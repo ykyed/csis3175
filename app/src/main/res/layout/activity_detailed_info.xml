@@ -136,6 +136,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:backgroundTint="@color/black"
+                android:visibility="invisible"
                 android:text="Write a review" />
 
             <LinearLayout
