@@ -5,9 +5,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.GridLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
@@ -41,7 +43,7 @@ public class DetailedInfoActivity extends ToolbarBaseActivity {
     private Button selectedButton = null;
 
     //review part
-    private Button btnToggle;
+    private ImageButton btnToggle;
     private boolean areReviewsVisible = false;
     private LinearLayout reviewListContainer;
     private TextView reviewMessage;
@@ -123,10 +125,11 @@ public class DetailedInfoActivity extends ToolbarBaseActivity {
         createSizeButtons();
 
         btnToggle = findViewById(R.id.btnToggle);
+
         reviewListContainer = findViewById(R.id.reviewListContainer);
         reviewMessage = findViewById(R.id.reviewMessage);
         reviewListContainer.setVisibility(View.GONE);
-        btnToggle.setText("More");
+        btnToggle.setImageResource(R.drawable.more);
 
         btnToggle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -170,10 +173,10 @@ public class DetailedInfoActivity extends ToolbarBaseActivity {
         if (areReviewsVisible) {
             // Hide reviews
             reviewListContainer.setVisibility(View.GONE);
-            btnToggle.setText("More"); // Change button text to "More"
+            btnToggle.setImageResource(R.drawable.more);
         } else {
             reviewListContainer.setVisibility(View.VISIBLE);
-            btnToggle.setText("Less"); // Change button text to "Less"
+            btnToggle.setImageResource(R.drawable.less);
         }
         areReviewsVisible = !areReviewsVisible;
     }
