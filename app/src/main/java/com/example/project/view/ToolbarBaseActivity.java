@@ -31,6 +31,7 @@ public class ToolbarBaseActivity extends AppCompatActivity {
 
     private CartInfoDAO cartInfoDAO;
     private TextView txtName, txtCartBadge;
+    private ImageButton imgBack;
     private boolean isLogin = false;
 
     @Override
@@ -55,6 +56,7 @@ public class ToolbarBaseActivity extends AppCompatActivity {
 
         ImageButton imgLogin = findViewById(R.id.imgLogin);
         ImageButton imgCart = findViewById(R.id.imgCart);
+        imgBack = findViewById(R.id.imgBack);
         txtName = findViewById(R.id.txtName);
         txtCartBadge = findViewById(R.id.txtCartBadge);
 
@@ -84,6 +86,19 @@ public class ToolbarBaseActivity extends AppCompatActivity {
                     Intent intent = new Intent(ToolbarBaseActivity.this, LoginActivity.class);
                     startActivity(intent);
                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                }
+            }
+        });
+
+        imgBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (getSupportFragmentManager().getFragments().isEmpty()) {
+                    finish();
+                }
+                else {
+                    getSupportFragmentManager().popBackStack();
                 }
             }
         });
@@ -163,5 +178,9 @@ public class ToolbarBaseActivity extends AppCompatActivity {
         else {
             txtCartBadge.setVisibility(View.GONE);
         }
+    }
+
+    protected void setBackButtonVisibility(int visibility) {
+        imgBack.setVisibility(visibility);
     }
 }

@@ -12,6 +12,7 @@
     <string name="btn_decrease">Decrease</string>
     <string name="app_logo">App logo</string>
     <string name="login">Login</string>
+    <string name="back">Back</string>
     <string name="cart">Cart</string>
     <string name="user_info_shared_preference">CurrentUserInfo</string>
 

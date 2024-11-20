@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.core.splashscreen.SplashScreen;
@@ -28,6 +29,7 @@ public class MainActivity extends ToolbarBaseActivity implements FilterFragment.
     private FloatingActionButton fab;
     private ShoeListAdapter shoeListAdapter;
     private ShoeDAO shoeDAO;
+    private ImageButton imgBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +81,7 @@ public class MainActivity extends ToolbarBaseActivity implements FilterFragment.
                         .commit();
 
                 fab.setVisibility(View.GONE);
+                setBackButtonVisibility(View.VISIBLE);
             }
         });
 
@@ -89,8 +92,11 @@ public class MainActivity extends ToolbarBaseActivity implements FilterFragment.
                 if (fab.getVisibility() != View.VISIBLE) {
                     fab.setVisibility(View.VISIBLE);
                 }
+                setBackButtonVisibility(View.INVISIBLE);
             }
         }, true);
+
+        setBackButtonVisibility(View.INVISIBLE);
     }
 
     @Override

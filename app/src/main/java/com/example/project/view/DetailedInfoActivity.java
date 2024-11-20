@@ -156,6 +156,8 @@ public class DetailedInfoActivity extends ToolbarBaseActivity {
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }
         });
+
+        setBackButtonVisibility(View.VISIBLE);
     }
 
     @Override
