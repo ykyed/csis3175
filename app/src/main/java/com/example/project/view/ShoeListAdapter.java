@@ -82,13 +82,15 @@ public class ShoeListAdapter extends RecyclerView.Adapter<ShoeListAdapter.ViewHo
         String price = "$" + shoe.getPrice();
         holder.txtPrice.setText(price);
 
-        float rating = (float) shoe.getRating();
-        Log.d("ShoeListAdapter", "rating: " + rating);
-        if (rating == 0) {
+        float totalRating = (float) shoe.getTotalRating();
+
+        Log.d("ShoeListAdapter", "rating: " + totalRating);
+        if (totalRating == 0) {
             holder.ratingBar.setVisibility(View.INVISIBLE);
         }
         else {
-            holder.ratingBar.setRating((float) shoe.getRating());
+            float rating = Float.parseFloat(String.format("%.1f", totalRating / shoe.getReviewCount()));
+            holder.ratingBar.setRating(rating);
             holder.ratingBar.setVisibility(View.VISIBLE);
         }
 

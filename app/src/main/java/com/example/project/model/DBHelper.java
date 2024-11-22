@@ -50,11 +50,11 @@ public class DBHelper extends SQLiteOpenHelper {
                 + Shoe.COLOR_COL + " TEXT, "
                 + Shoe.STYLE_COL + " TEXT, "
                 + Shoe.BRAND_COL + " TEXT, "
-                + Shoe.THUMBNAIL_COL + " TEXT)";
+                + Shoe.THUMBNAIL_COL + " TEXT, "
+                + Shoe.IMAGES_COL + " TEXT)";
 
         db.execSQL(createShoesTable);
 
-        // Create reviews table
         String createReviewsTable = "CREATE TABLE " + ReviewInfo.TABLE_NAME + " ("
                 + ReviewInfo.ID_COL + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + ReviewInfo.PRODUCT_CODE_COL + " TEXT, "
@@ -110,6 +110,16 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    @Override
+    public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS " + ReviewInfo.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + Shoe.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + CartInfo.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + UserInfo.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + SizeInfo.TABLE_NAME);
+        onCreate(db);
+    }
+
     private void insertInitShoeData(SQLiteDatabase db) {
 
         try {
@@ -141,6 +151,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 String style = shoeObject.getString(Shoe.STYLE_COL);
                 String brand = shoeObject.getString(Shoe.BRAND_COL);
                 String thumbnail = shoeObject.getString(Shoe.THUMBNAIL_COL);
+                JSONArray images = shoeObject.getJSONArray(Shoe.IMAGES_COL);
 
                 ContentValues values = new ContentValues();
                 values.put(Shoe.PRODUCT_CODE_COL, productCode);
@@ -152,6 +163,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 values.put(Shoe.STYLE_COL, style);
                 values.put(Shoe.BRAND_COL, brand);
                 values.put(Shoe.THUMBNAIL_COL, thumbnail);
+                values.put(Shoe.IMAGES_COL, images.toString());
+
                 db.insert(Shoe.TABLE_NAME, null, values);
             }
         } catch (Exception e) {

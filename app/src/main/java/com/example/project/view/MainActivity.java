@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.core.splashscreen.SplashScreen;
@@ -29,7 +28,6 @@ public class MainActivity extends ToolbarBaseActivity implements FilterFragment.
     private FloatingActionButton fab;
     private ShoeListAdapter shoeListAdapter;
     private ShoeDAO shoeDAO;
-    private ImageButton imgBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,5 +101,11 @@ public class MainActivity extends ToolbarBaseActivity implements FilterFragment.
     public void onFilterApplied(Set<String> brands, Set<String> colors, Set<String> styles) {
         List<Shoe> filteredShoes = shoeDAO.filterShoes(brands, colors, styles);
         shoeListAdapter.updateData(filteredShoes);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        shoeListAdapter.updateData(shoeDAO.getAllShoes());
     }
 }

@@ -146,6 +146,4 @@ public class CartActivity extends ToolbarLogoBaseActivity {
         super.finish();
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
-
-
 }

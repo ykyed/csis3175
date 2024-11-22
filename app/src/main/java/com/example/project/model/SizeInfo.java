@@ -13,7 +13,6 @@ public class SizeInfo {
     private double size;
     private int quantity;
 
-
     public int getId() {
         return id;
     }

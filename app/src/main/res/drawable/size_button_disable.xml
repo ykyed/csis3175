@@ -1,0 +1,5 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/size_btn_background" />
+    <corners android:radius="5dp" />
+    <stroke android:color="@color/size_btn_background" android:width="1dp" />
+</shape>

@@ -30,7 +30,7 @@ public class ShoeDAO {
 
             shoe.setTitle(cursor.getString(cursor.getColumnIndexOrThrow(Shoe.TITLE_COL)));
             shoe.setPrice(cursor.getDouble(cursor.getColumnIndexOrThrow(Shoe.PRICE_COL)));
-            shoe.setRating(cursor.getDouble(cursor.getColumnIndexOrThrow(Shoe.RATING_COL)));
+            shoe.setTotalRating(cursor.getDouble(cursor.getColumnIndexOrThrow(Shoe.RATING_COL)));
             shoe.setReviewCount(cursor.getInt(cursor.getColumnIndexOrThrow(Shoe.REVIEW_COUNT_COL)));
             shoe.setColor(cursor.getString(cursor.getColumnIndexOrThrow(Shoe.COLOR_COL)));
             shoe.setStyle(cursor.getString(cursor.getColumnIndexOrThrow(Shoe.STYLE_COL)));
@@ -55,12 +55,13 @@ public class ShoeDAO {
             shoe.setTitle(cursor.getString(cursor.getColumnIndexOrThrow(Shoe.TITLE_COL)));
             shoe.setProductCode(cursor.getString(cursor.getColumnIndexOrThrow(Shoe.PRODUCT_CODE_COL)));
             shoe.setPrice(cursor.getDouble(cursor.getColumnIndexOrThrow(Shoe.PRICE_COL)));
-            shoe.setRating(cursor.getDouble(cursor.getColumnIndexOrThrow(Shoe.RATING_COL)));
+            shoe.setTotalRating(cursor.getDouble(cursor.getColumnIndexOrThrow(Shoe.RATING_COL)));
             shoe.setReviewCount(cursor.getInt(cursor.getColumnIndexOrThrow(Shoe.REVIEW_COUNT_COL)));
             shoe.setColor(cursor.getString(cursor.getColumnIndexOrThrow(Shoe.COLOR_COL)));
             shoe.setStyle(cursor.getString(cursor.getColumnIndexOrThrow(Shoe.STYLE_COL)));
             shoe.setBrand(cursor.getString(cursor.getColumnIndexOrThrow(Shoe.BRAND_COL)));
             shoe.setThumbnail(cursor.getString(cursor.getColumnIndexOrThrow(Shoe.THUMBNAIL_COL)));
+            shoe.setImages(cursor.getString(cursor.getColumnIndexOrThrow(Shoe.IMAGES_COL)));
         }
         if (cursor != null) {
             cursor.close();
@@ -74,7 +75,7 @@ public class ShoeDAO {
         SQLiteDatabase db =  DBHelper.getInstance(context).getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(Shoe.RATING_COL, shoe.getRating());
+        values.put(Shoe.RATING_COL, shoe.getTotalRating());
         values.put(Shoe.REVIEW_COUNT_COL, shoe.getReviewCount());
         String selection = Shoe.PRODUCT_CODE_COL + " = ?";
         String[] selectionArgs = {shoe.getProductCode()};
@@ -114,7 +115,7 @@ public class ShoeDAO {
                 shoe.setProductCode(cursor.getString(cursor.getColumnIndexOrThrow(Shoe.PRODUCT_CODE_COL)));
                 shoe.setTitle(cursor.getString(cursor.getColumnIndexOrThrow(Shoe.TITLE_COL)));
                 shoe.setPrice(cursor.getDouble(cursor.getColumnIndexOrThrow(Shoe.PRICE_COL)));
-                shoe.setRating(cursor.getDouble(cursor.getColumnIndexOrThrow(Shoe.RATING_COL)));
+                shoe.setTotalRating(cursor.getDouble(cursor.getColumnIndexOrThrow(Shoe.RATING_COL)));
                 shoe.setReviewCount(cursor.getInt(cursor.getColumnIndexOrThrow(Shoe.REVIEW_COUNT_COL)));
                 shoe.setColor(cursor.getString(cursor.getColumnIndexOrThrow(Shoe.COLOR_COL)));
                 shoe.setStyle(cursor.getString(cursor.getColumnIndexOrThrow(Shoe.STYLE_COL)));

@@ -59,12 +59,12 @@
 
     <Button
         android:id="@+id/btnApply"
-        style="?android:attr/buttonBarButtonStyle"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/create_account"
         android:layout_gravity="center"
         android:backgroundTint="@color/black"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:layout_marginHorizontal="10dp"/>
 
 </LinearLayout>

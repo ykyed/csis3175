@@ -38,5 +38,14 @@
     <string name="estimated_gst_hst">Estimated GST/HST</string>
     <string name="estimated_pst_rst_qst">Estimated PST/RST/QST</string>
     <string name="order_total">Order Total</string>
+    <string name="select_a_size">Select a size:</string>
+    <string name="add_to_cart">Add to cart</string>
+    <string name="reviews">Reviews</string>
+    <string name="write_a_review">Write a Review</string>
+    <string name="share_your_thoughts">Share your thoughts</string>
+    <string name="overall_rating">Overall Rating</string>
+    <string name="review_title">Review title</string>
+    <string name="your_review">Your Review</string>
+    <string name="submit_review">Submit Review</string>
 
 </resources>

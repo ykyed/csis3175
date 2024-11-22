@@ -41,7 +41,6 @@ public class ReviewInfoDAO {
         return reviews;
     }
 
-    // Method to add a review for a shoe
     public void addReview(ReviewInfo reviewInfo) {
         SQLiteDatabase db =  DBHelper.getInstance(context).getWritableDatabase();
 
@@ -52,29 +51,11 @@ public class ReviewInfoDAO {
         values.put(ReviewInfo.RATING_COL, reviewInfo.getRating());
 
         db.insert(ReviewInfo.TABLE_NAME, null, values);
-        //updateShoeRating(shoeId);  // Update the average rating for the shoe
+
+        ShoeDAO shoeDAO = new ShoeDAO(context);
+        Shoe shoeInfo = shoeDAO.getShoe(reviewInfo.getProductCode());
+        shoeInfo.setReviewCount(shoeInfo.getReviewCount() + 1);
+        shoeInfo.setTotalRating(shoeInfo.getTotalRating() + reviewInfo.getRating());
+        shoeDAO.updateShoe(shoeInfo);
     }
-
-    /*
-    private void updateShoeRating(int shoeId) {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        String query = "SELECT AVG(" + RATING_COL + ") as avg_rating, COUNT(" + RATING_COL + ") as review_count " +
-                "FROM " + TABLE_REVIEWS + " WHERE " + SHOE_ID_COL + " = ?";
-
-        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(shoeId)});
-        if (cursor.moveToFirst()) {
-            @SuppressLint("Range") float avgRating = cursor.getFloat(cursor.getColumnIndex("avg_rating"));
-            @SuppressLint("Range") int reviewCount = cursor.getInt(cursor.getColumnIndex("review_count"));
-
-            ContentValues values = new ContentValues();
-            values.put(Shoe.RATING_COL, avgRating);
-            values.put(Shoe.REVIEW_COUNT_COL, reviewCount);
-
-            db.update(TABLE_SHOES, values, Shoe.ID_COL + " = ?", new String[]{String.valueOf(shoeId)});
-        }
-        cursor.close();
-    }
-    */
-
 }

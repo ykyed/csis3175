@@ -1,6 +1,9 @@
 package com.example.project.model;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
+
+import java.util.List;
 
 public class Shoe {
 
@@ -15,6 +18,7 @@ public class Shoe {
     public static final String STYLE_COL = "style";
     public static final String BRAND_COL = "brand";
     public static final String THUMBNAIL_COL = "thumbnail";
+    public static final String IMAGES_COL = "images";
 
     private int id;
     private String productCode;
@@ -26,6 +30,7 @@ public class Shoe {
     private String style;
     private String brand;
     private String thumbnail;
+    private String images;
 
     public int getId() {
         return id;
@@ -59,18 +64,12 @@ public class Shoe {
         this.price = price;
     }
 
-    @SuppressLint("DefaultLocale")
-    public double getRating() {
-        if (totalRating > 0) {
-            return Double.parseDouble(String.format("%.1f", totalRating / reviewCount));
-        }
-        else {
-            return 0;
-        }
+    public double getTotalRating() {
+        return totalRating;
     }
 
-    public void setRating(double rating) {
-        this.totalRating += rating;
+    public void setTotalRating(double rating) {
+        this.totalRating = rating;
     }
 
     public int getReviewCount() {
@@ -111,5 +110,13 @@ public class Shoe {
 
     public void setThumbnail(String thumbnail) {
         this.thumbnail = thumbnail;
+    }
+
+    public String getImages() {
+        return images;
+    }
+
+    public void setImages(String images) {
+        this.images = images;
     }
 }

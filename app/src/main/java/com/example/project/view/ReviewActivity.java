@@ -1,26 +1,18 @@
 package com.example.project.view;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
+import com.bumptech.glide.Glide;
 import com.example.project.R;
-import com.example.project.model.DBHelper;
 import com.example.project.model.ReviewInfo;
 import com.example.project.model.ReviewInfoDAO;
 import com.example.project.model.Shoe;
@@ -30,13 +22,15 @@ public class ReviewActivity extends ToolbarLogoBaseActivity {
 
     private TextView productName;
     private RatingBar ratingBar;
-    private EditText reviewHeadline;
-    private EditText reviewComment;
+    private EditText reviewHeadline, reviewComment;
     private Button submitReviewButton;
+    private ImageView imgThumb;
     private String productCode;
 
     private ShoeDAO shoeDAO;
     private ReviewInfoDAO reviewInfoDAO;
+
+    private Shoe shoeInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,20 +41,18 @@ public class ReviewActivity extends ToolbarLogoBaseActivity {
         View contentView = inflater.inflate(R.layout.activity_review, contentFrame, false);
         contentFrame.addView(contentView);
 
-        // DBHelper
-        //dbHelper = DBHelper.getInstance(this);
         reviewInfoDAO = new ReviewInfoDAO(this);
         shoeDAO = new ShoeDAO(this);
 
         productCode = getIntent().getStringExtra("product_code");
-        Shoe shoe = shoeDAO.getShoe(productCode);
-
+        shoeInfo = shoeDAO.getShoe(productCode);
 
         productName = findViewById(R.id.product_name);
         ratingBar = findViewById(R.id.rating_bar);
         reviewHeadline = findViewById(R.id.review_headline);
         reviewComment = findViewById(R.id.review_comment);
         submitReviewButton = findViewById(R.id.submit_review);
+        imgThumb = findViewById(R.id.imgThumb);
 
         submitReviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,9 +61,11 @@ public class ReviewActivity extends ToolbarLogoBaseActivity {
             }
         });
 
-
-        productName.setText(shoe.getTitle());
-
+        productName.setText(shoeInfo.getTitle());
+        String imageUrl = shoeInfo.getThumbnail();
+        Glide.with(this)
+                .load(imageUrl)
+                .into(imgThumb);
     }
 
     private void submitReview() {
@@ -84,16 +78,13 @@ public class ReviewActivity extends ToolbarLogoBaseActivity {
             return;
         }
         if (headline.isEmpty()) {
-            Toast.makeText(this, "Please provide a review headline.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please provide a review title.", Toast.LENGTH_SHORT).show();
             return;
         }
         if (comment.isEmpty()) {
             Toast.makeText(this, "Please provide a comment.", Toast.LENGTH_SHORT).show();
             return;
         }
-
-        // Insert review into database
-        //dbHelper.addReview(shoeId, rating, headline, comment);
 
         reviewInfoDAO.addReview(new ReviewInfo(productCode, headline, comment, rating));
 
@@ -109,5 +100,4 @@ public class ReviewActivity extends ToolbarLogoBaseActivity {
         super.finish();
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
-
 }

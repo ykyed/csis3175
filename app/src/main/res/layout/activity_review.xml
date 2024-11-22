@@ -5,78 +5,145 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.ReviewActivity">
+    tools:context=".view.ReviewActivity"
+    android:background="@color/activity_background">
 
-    <TextView
-        android:id="@+id/product_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nike Air Force 1"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/actionbar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"
-        tools:ignore="NotSibling" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="5dp"
+        android:background="@color/white">
 
-    <TextView
-        android:id="@+id/rating_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Overall Rating"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/product_name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/write_a_review"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/black"/>
 
-    <RatingBar
-        android:id="@+id/rating_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:numStars="5"
-        android:stepSize="1.0"
-        app:layout_constraintTop_toBottomOf="@id/rating_label"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/share_your_thoughts"
+            android:textSize="13sp"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/hint_text_color"/>
 
-    <EditText
-        android:id="@+id/review_headline"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Review Headline"
-        android:inputType="text"
-        app:layout_constraintTop_toBottomOf="@id/rating_bar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        android:layout_marginHorizontal="16dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="10dp" >
 
-    <EditText
-        android:id="@+id/review_comment"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Comments"
-        android:inputType="textMultiLine"
-        android:lines="4"
-        app:layout_constraintTop_toBottomOf="@id/review_headline"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        android:layout_marginHorizontal="16dp"/>
+            <ImageView
+                android:id="@+id/imgThumb"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:scaleType="fitCenter" />
 
-    <Button
-        android:id="@+id/submit_review"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Submit Review"
-        app:layout_constraintTop_toBottomOf="@id/review_comment"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:backgroundTint="@color/black"
-        android:layout_marginTop="24dp"
-        android:layout_marginHorizontal="16dp"/>
+            <TextView
+                android:id="@+id/product_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="10dp"/>
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/rating_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/overall_rating"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="10dp"/>
+
+        <RatingBar
+            android:id="@+id/rating_bar"
+            style="?android:attr/ratingBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/transparent"
+            android:numStars="5"
+            android:progressTint="@color/ratingbar"
+            android:secondaryProgressTint="@color/transparent"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/line_divide_background"
+            android:layout_marginTop="30dp"
+            android:layout_marginHorizontal="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/review_title"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/black"/>
+
+        <EditText
+            android:id="@+id/review_headline"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:inputType="text"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/rounded_edit_text"
+            android:padding="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/your_review"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/black"/>
+
+        <EditText
+            android:id="@+id/review_comment"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:inputType="textMultiLine"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="10dp"
+            android:textColor="@color/black"
+            android:padding="10dp"
+            android:gravity="top"
+            android:background="@drawable/rounded_edit_text"/>
+
+        <Button
+            android:id="@+id/submit_review"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/submit_review"
+            android:backgroundTint="@color/black"
+            android:textColor="@color/white"
+            android:layout_marginTop="24dp"
+            android:layout_marginHorizontal="10dp"/>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
