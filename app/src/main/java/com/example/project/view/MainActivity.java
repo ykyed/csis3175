@@ -28,6 +28,7 @@ public class MainActivity extends ToolbarBaseActivity implements FilterFragment.
     private FloatingActionButton fab;
     private ShoeListAdapter shoeListAdapter;
     private ShoeDAO shoeDAO;
+    private ArrayList<Shoe> filteredShoeList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +54,8 @@ public class MainActivity extends ToolbarBaseActivity implements FilterFragment.
         int horizontalSpacing = (int) getResources().getDimension(R.dimen.horizontal_spacing);
         recyclerView.addItemDecoration(new SpacingItemDecoration(verticalSpacing, horizontalSpacing));
 
-        ArrayList<Shoe> shoeList = shoeDAO.getAllShoes();
-        shoeListAdapter = new ShoeListAdapter(this, shoeList, new ShoeListAdapter.OnItemClickListener() {
+        filteredShoeList = shoeDAO.getAllShoes();
+        shoeListAdapter = new ShoeListAdapter(this, filteredShoeList, new ShoeListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Shoe shoe) {
                 Intent intent = new Intent(MainActivity.this, DetailedInfoActivity.class);
@@ -99,13 +100,13 @@ public class MainActivity extends ToolbarBaseActivity implements FilterFragment.
 
     @Override
     public void onFilterApplied(Set<String> brands, Set<String> colors, Set<String> styles) {
-        List<Shoe> filteredShoes = shoeDAO.filterShoes(brands, colors, styles);
-        shoeListAdapter.updateData(filteredShoes);
+        filteredShoeList = (ArrayList<Shoe>) shoeDAO.filterShoes(brands, colors, styles);
+        shoeListAdapter.updateData(filteredShoeList);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        shoeListAdapter.updateData(shoeDAO.getAllShoes());
+        shoeListAdapter.updateData(filteredShoeList);
     }
 }

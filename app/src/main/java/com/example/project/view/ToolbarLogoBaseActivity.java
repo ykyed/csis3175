@@ -38,7 +38,12 @@ public class ToolbarLogoBaseActivity extends AppCompatActivity {
 
         ImageButton imgBack = findViewById(R.id.imgBack);
         imgBack.setOnClickListener(v -> {
-            finish();
+            if (getSupportFragmentManager().getFragments().isEmpty()) {
+                finish();
+            }
+            else {
+                getSupportFragmentManager().popBackStack();
+            }
         });
 
         Window window = getWindow();

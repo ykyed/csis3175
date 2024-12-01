@@ -1,0 +1,172 @@
+@startuml
+package com.example.project.model; {
+class CartInfo {
+}
+
+class CartInfoDAO {
+}
+
+class DBHelper {
+}
+
+class ReviewInfo {
+}
+
+class ReviewInfoDAO {
+}
+
+class Shoe {
+}
+
+class ShoeDAO {
+}
+
+class SizeInfo {
+}
+
+class SizeInfoDAO {
+}
+
+class UserInfo {
+}
+
+class UserInfoDAO {
+}
+
+}
+
+package com.example.project.util; {
+class HashUtils {
+}
+
+}
+
+package com.example.project.view; {
+class CartActivity {
+}
+
+class CartListAdapter {
+}
+
+class CheckoutFragment {
+}
+
+class DetailedInfoActivity {
+}
+
+class FilterAdapter {
+}
+
+class FilterFragment {
+}
+
+class ImageAdapter {
+}
+
+class LoginActivity {
+}
+
+class MainActivity {
+}
+
+class ReviewActivity {
+}
+
+class ReviewListAdapter {
+}
+
+class ShoeListAdapter {
+}
+
+class SignupFragment {
+}
+
+class SpacingItemDecoration {
+}
+
+class ToolbarBaseActivity {
+}
+
+class ToolbarLogoBaseActivity {
+}
+
+}
+
+package com.example.project.viewmodel; {
+class FilterViewModel {
+}
+
+}
+
+CartInfoDAO -- CartInfo
+CartInfoDAO -- DBHelper
+DBHelper -- CartInfo
+DBHelper -- ReviewInfo
+DBHelper -- Shoe
+DBHelper -- SizeInfo
+DBHelper -- UserInfo
+DBHelper -- HashUtils
+ReviewInfoDAO -- DBHelper
+ReviewInfoDAO -- ReviewInfo
+ReviewInfoDAO -- Shoe
+ReviewInfoDAO -- ShoeDAO
+ShoeDAO -- DBHelper
+ShoeDAO -- Shoe
+SizeInfoDAO -- DBHelper
+SizeInfoDAO -- SizeInfo
+UserInfoDAO -- DBHelper
+UserInfoDAO -- UserInfo
+UserInfoDAO -- HashUtils
+CartActivity -- CartInfo
+CartActivity -- CartInfoDAO
+CartActivity -- Shoe
+CartActivity -- ShoeDAO
+CartActivity -- CartListAdapter
+CartActivity -- CheckoutFragment
+CartActivity -- ToolbarLogoBaseActivity
+CartListAdapter -- CartInfo
+CartListAdapter -- Shoe
+CartListAdapter -- ShoeDAO
+DetailedInfoActivity -- CartInfo
+DetailedInfoActivity -- CartInfoDAO
+DetailedInfoActivity -- ReviewInfo
+DetailedInfoActivity -- ReviewInfoDAO
+DetailedInfoActivity -- Shoe
+DetailedInfoActivity -- ShoeDAO
+DetailedInfoActivity -- SizeInfo
+DetailedInfoActivity -- SizeInfoDAO
+DetailedInfoActivity -- ImageAdapter
+DetailedInfoActivity -- LoginActivity
+DetailedInfoActivity -- ReviewActivity
+DetailedInfoActivity -- ReviewListAdapter
+DetailedInfoActivity -- ToolbarBaseActivity
+FilterFragment -- Shoe
+FilterFragment -- ShoeDAO
+FilterFragment -- FilterAdapter
+FilterFragment -- SpacingItemDecoration
+FilterFragment -- FilterViewModel
+LoginActivity -- UserInfo
+LoginActivity -- UserInfoDAO
+LoginActivity -- SignupFragment
+LoginActivity -- ToolbarLogoBaseActivity
+MainActivity -- Shoe
+MainActivity -- ShoeDAO
+MainActivity -- DetailedInfoActivity
+MainActivity -- FilterFragment
+MainActivity -- ShoeListAdapter
+MainActivity -- SpacingItemDecoration
+MainActivity -- ToolbarBaseActivity
+ReviewActivity -- ReviewInfo
+ReviewActivity -- ReviewInfoDAO
+ReviewActivity -- Shoe
+ReviewActivity -- ShoeDAO
+ReviewActivity -- ToolbarLogoBaseActivity
+ReviewListAdapter -- ReviewInfo
+ShoeListAdapter -- Shoe
+SignupFragment -- UserInfo
+SignupFragment -- UserInfoDAO
+ToolbarBaseActivity -- CartInfo
+ToolbarBaseActivity -- CartInfoDAO
+ToolbarBaseActivity -- CartActivity
+ToolbarBaseActivity -- LoginActivity
+@enduml
